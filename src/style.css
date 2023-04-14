@@ -1,0 +1,92 @@
+/* utils & components */
+
+.mb-6 {
+  margin-bottom: 3rem;
+}
+
+.btn {
+  padding: 0.9rem 2.9rem;
+  border: 0;
+  border-radius: 0.5rem;
+  border: 0;
+  border-right: 5px solid #666;
+  border-bottom: 5.5px solid #777;
+}
+.btn:hover {
+  cursor: pointer;
+  padding: 1rem 3rem;
+  border-right: 2px solid #888;
+  border-bottom: 2.5px solid #999;
+}
+.btn-sm {
+  padding: 0.5rem 1rem;
+}
+.btn-sm:hover {
+  padding: 0.6rem 1.1rem;
+  border-right: 3px solid #888;
+  border-bottom: 3.5px solid #999;
+}
+
+.text-gray {
+  color: #666;
+}
+
+.title {
+  font-weight: bold;
+  color: #d4ce41;
+}
+
+/* App.js */
+.wrapper {
+  background: #000;
+  min-height: 100vh;
+}
+
+/* HomePage.js */
+.home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.welcome-title {
+  font-size: 70px;
+  text-shadow: 3px 3px #fa8080, 5px 4px #888;
+}
+
+/* StepOne.js */
+.inner-page-container {
+  padding: 2rem 3rem;
+}
+.stage-title {
+  font-size: 48px;
+}
+.searchbar {
+  padding: 0.5rem 1.5rem;
+  font-size: 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+}
+.search-result-btn {
+  border: none;
+  background: transparent;
+}
+.search-result-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+.selected-img {
+  border: 5px solid #fa8080;
+}
+
+/* StepTwo.js */
+.image-edit-section {
+  width: 600px;
+  height: 600px;
+  border: 3px solid #666;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

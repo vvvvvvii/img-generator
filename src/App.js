@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import HomePage from "./page/HomePage";
+import StepOne from "./page/StepOne";
+import StepTwo from "./page/StepTwo";
 
 function App() {
+  const [nowPage, setNowPage] = useState("HomePage");
+  const [selectedImageUrl, setSelectedImageUrl] = useState("");
+
+  const onChangePage = (pageName) => {
+    setNowPage(pageName);
+  };
+  const onChangeBackgroundUrl = (url) => {
+    setSelectedImageUrl(url);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      {nowPage === "HomePage" && <HomePage onChangePage={onChangePage} />}
+      {nowPage === "StepOne" && (
+        <StepOne
+          onChangeBackgroundUrl={onChangeBackgroundUrl}
+          selectedImageUrl={selectedImageUrl}
+          onChangePage={onChangePage}
+        />
+      )}
+      {nowPage === "StepTwo" && (
+        <StepTwo
+          onChangePage={onChangePage}
+          selectedImageUrl={selectedImageUrl}
+        />
+      )}
     </div>
   );
 }
