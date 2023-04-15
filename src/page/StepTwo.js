@@ -11,7 +11,6 @@ function StepTwo({ selectedImageUrl, onChangePage }) {
           style={{ backgroundImage: `url(${selectedImageUrl})` }}
           className="image-edit-section"
         ></div>
-        <form></form>
       </div>
 
       {/* <button

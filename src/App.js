@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import HomePage from "./page/HomePage";
 import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
@@ -22,6 +22,7 @@ function App() {
           onChangeBackgroundUrl={onChangeBackgroundUrl}
           selectedImageUrl={selectedImageUrl}
           onChangePage={onChangePage}
+          nowPage={nowPage}
         />
       )}
       {nowPage === "StepTwo" && (
