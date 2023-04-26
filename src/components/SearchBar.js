@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 function SearchBar({ onSubmit }) {
-  const [searchTxt, setSearchTxt] = useState("蓮花");
+  const [searchTxt, setSearchTxt] = useState("lotus");
 
   useEffect(() => {
     handleSubmit();
@@ -18,7 +18,7 @@ function SearchBar({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="d-flex align-center mb-3">
+    <form onSubmit={handleSubmit} className="d-flex align-center mb-5">
       <input
         type="text"
         placeholder={"輸入關鍵字"}

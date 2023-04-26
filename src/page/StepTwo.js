@@ -1,24 +1,67 @@
 import { useState } from "react";
+import WorkSpace from "../components/WorkSpace";
+import TxtList from "../components/TxtList";
+import EditModal from "../components/EditModal";
 
 function StepTwo({ selectedImageUrl, onChangePage }) {
-  return (
-    <div className="inner-page-container">
-      <h2 className="stage-title title mb-3">
-        第二步： <span>添加文字</span>
-      </h2>
-      <div className="row">
-        <div
-          style={{ backgroundImage: `url(${selectedImageUrl})` }}
-          className="image-edit-section"
-        ></div>
-      </div>
+  const [texts, setTexts] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [modalTxt, setModalTxt] = useState({});
 
-      {/* <button
-        onClick={()=>onChangePage("StepTwo")}
-        className="btn btn-sm btn-light ms-3 text-gray"
-      >
-        下一步
-      </button> */}
+  const toggleModal = (showModalBoolean, modalText) => {
+    if (showModalBoolean) {
+      setModalTxt({ ...modalText });
+    } else {
+      setModalTxt({});
+    }
+    setModalShow(showModalBoolean);
+  };
+  const handleSubmit = (newTxt) => {
+    let updateTexts = [];
+    const editMode = texts.filter((text) => text.id === newTxt.id).length > 0;
+
+    if (editMode) {
+      updateTexts = texts.map((text) => {
+        if (text.id === newTxt.id) {
+          return newTxt;
+        }
+        return text;
+      });
+    } else {
+      updateTexts = [...texts, newTxt];
+    }
+
+    setTexts(updateTexts);
+  };
+
+  return (
+    <div>
+      <div className="inner-page-container">
+        <h2 className="stage-title title mb-5">
+          第二步： <span>添加文字</span>
+        </h2>
+        <div className="row">
+          <div className="col-6">
+            <WorkSpace selectedImageUrl={selectedImageUrl} />
+          </div>
+          <div className="col-6">
+            <TxtList texts={texts} toggleModal={toggleModal} />
+            <button
+              onClick={() => toggleModal(true)}
+              className="btn btn-sm w-50 btn-light text-gray"
+            >
+              新增
+            </button>
+          </div>
+        </div>
+      </div>
+      {modalShow && (
+        <EditModal
+          modalTxt={modalTxt}
+          toggleModal={toggleModal}
+          onSubmit={handleSubmit}
+        />
+      )}
     </div>
   );
 }

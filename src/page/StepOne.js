@@ -20,7 +20,7 @@ function StepOne({
 
   return (
     <div className="inner-page-container">
-      <h2 className="stage-title title mb-3">
+      <h2 className="stage-title title mb-5">
         第一步： <span>選擇圖片</span>
       </h2>
       <SearchBar onSubmit={handleSubmit} />
