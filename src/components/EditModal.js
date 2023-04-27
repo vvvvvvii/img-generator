@@ -164,7 +164,7 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
                 onClick={() => handleStyleChange(txtStyle.name)}
               >
                 <p className="fs-2" style={txtStyle.styleObj}>
-                  早安～
+                  {content.slice(0, 3) || "早安～"}
                 </p>
                 {txtStyle.infoTxt}
               </button>
@@ -173,8 +173,10 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
           <div className="text-center">
             <button
               type="button"
-              className="btn btn-sm w-50"
-              onClick={handleSubmit}
+              className={`btn btn-sm w-50 ${
+                content.length > 0 ? "" : "btn-disabled"
+              }`}
+              onClick={content.length > 0 ? handleSubmit : null}
             >
               確定
             </button>

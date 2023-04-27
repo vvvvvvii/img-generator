@@ -25,6 +25,10 @@
   border-right: 3px solid #888;
   border-bottom: 3.5px solid #999;
 }
+.btn-disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
 
 .text-gray {
   color: #666;
@@ -147,9 +151,11 @@
 }
 /* TxtShow */
 .card {
-  padding: 1.5rem 2rem;
-  background: #fff;
-  margin-bottom: 1.5rem;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  box-shadow: 2px 2px #999, 2px 0px #999;
+  padding: 1rem 1.75rem;
+  margin-bottom: 1.5rem;
 }

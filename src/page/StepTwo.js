@@ -33,6 +33,10 @@ function StepTwo({ selectedImageUrl, onChangePage }) {
 
     setTexts(updateTexts);
   };
+  const onDelete = (id) => {
+    const updateTexts = texts.filter((text) => text.id !== id);
+    setTexts(updateTexts);
+  };
 
   return (
     <div>
@@ -45,7 +49,11 @@ function StepTwo({ selectedImageUrl, onChangePage }) {
             <WorkSpace selectedImageUrl={selectedImageUrl} />
           </div>
           <div className="col-6">
-            <TxtList texts={texts} toggleModal={toggleModal} />
+            <TxtList
+              texts={texts}
+              toggleModal={toggleModal}
+              onDelete={onDelete}
+            />
             <button
               onClick={() => toggleModal(true)}
               className="btn btn-sm w-50 btn-light text-gray"
