@@ -85,14 +85,6 @@
 }
 
 /* StepTwo.js */
-.image-edit-section {
-  width: 600px;
-  height: 600px;
-  border: 3px solid #666;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 .modal-background {
   position: fixed;
   z-index: 2;
@@ -149,7 +141,36 @@
 .input:focus-visible {
   outline: none;
 }
+/* workSpace */
+.image-edit-section {
+  width: 600px;
+  height: 600px;
+  border: 3px solid #666;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
 /* TxtShow */
+.editTxtSection {
+  word-break: break-all;
+  padding: 0.25rem;
+}
+.editTxtSection:hover {
+  border: 1px solid #000;
+  background: #f5f5f5;
+  opacity: 0.7;
+  cursor: move;
+}
+.editFontSize {
+  border: 1px solid #000;
+  background: #f5f5f5;
+}
+.editFontSize:hover {
+  cursor: nwse-resize;
+}
+
+/* TxtCard */
 .card {
   flex-direction: row;
   justify-content: space-between;
@@ -158,4 +179,8 @@
   box-shadow: 2px 2px #999, 2px 0px #999;
   padding: 1rem 1.75rem;
   margin-bottom: 1.5rem;
+}
+.card-text {
+  word-break: break-all;
+  max-width: 75%;
 }

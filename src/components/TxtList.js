@@ -1,10 +1,10 @@
-import TxtShow from "./TxtShow";
+import TxtCard from "./TxtCard";
 
 function TxtList({ texts, toggleModal, onDelete }) {
   return (
     <div className="text-light">
       {texts.map((text) => (
-        <TxtShow
+        <TxtCard
           key={text.id}
           text={text}
           toggleModal={toggleModal}

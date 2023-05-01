@@ -46,7 +46,7 @@ function StepTwo({ selectedImageUrl, onChangePage }) {
         </h2>
         <div className="row">
           <div className="col-6">
-            <WorkSpace selectedImageUrl={selectedImageUrl} />
+            <WorkSpace selectedImageUrl={selectedImageUrl} texts={texts} />
           </div>
           <div className="col-6">
             <TxtList

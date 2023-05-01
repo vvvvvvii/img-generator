@@ -1,34 +1,83 @@
-import React from "react";
+import Draggable from "react-draggable";
+import { useEffect, useRef, useState } from "react";
 
-function TxtShow({ text, toggleModal, onDelete }) {
-  const openModal = () => {
-    toggleModal(true, text);
+function TxtShow({ text }) {
+  const [mode, setMode] = useState("dragPosition");
+  const [resizeFocus, setResizeFocus] = useState(false);
+  const [startWidth, setStartWidth] = useState(0);
+  const [startHeight, setStartHeight] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [startY, setStartY] = useState(0);
+  const [width, setWidth] = useState("auto");
+  const [height, setHeight] = useState("auto");
+  const sizeRef = useRef();
+
+  useEffect(() => {
+    setStartWidth(parseInt(getComputedStyle(sizeRef.current).width, 10));
+    setStartHeight(parseInt(getComputedStyle(sizeRef.current).height, 10));
+  }, [sizeRef]);
+  useEffect(() => {
+    setWidth(startWidth);
+    setHeight(startHeight);
+  }, [startHeight, startWidth]);
+
+  const getRect = (e) => {
+    const offsetXPosition = e.nativeEvent.offsetX;
+    const offsetYPosition = e.nativeEvent.offsetY;
+
+    const isRightCorner =
+      offsetXPosition >= sizeRef.current.offsetWidth - 10 &&
+      offsetXPosition <= sizeRef.current.offsetWidth + 10;
+    const isBottomCorner =
+      offsetYPosition >= sizeRef.current.offsetHeight - 10 &&
+      offsetYPosition <= sizeRef.current.offsetHeight + 10;
+
+    if (isRightCorner && isBottomCorner) {
+      setMode("editSize");
+    } else {
+      setMode("dragPosition");
+    }
   };
-  const handleDelete = () => {
-    onDelete(text.id);
+  const onMouseDown = (e) => {
+    if (mode === "editSize") {
+      setStartX(e.clientX);
+      setStartY(e.clientY);
+      setResizeFocus(true);
+    }
+  };
+  const onMouseMove = (e) => {
+    if (resizeFocus) {
+      setWidth(startWidth + e.clientX - startX);
+      setHeight(startHeight + e.clientY - startY);
+    } else {
+      getRect(e);
+    }
+  };
+  const onMouseUp = (e) => {
+    setResizeFocus(false);
   };
 
   return (
-    <div className="card">
-      <div style={text.styles}>{text.content}</div>
-      <div>
-        <button
-          type="button"
-          className="btn btn-sm btn-light text-gray"
-          onClick={openModal}
-          title="編輯"
+    <div onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+      <Draggable
+        defaultPosition={{ x: 0, y: 0 }}
+        disabled={mode === "editSize"}
+      >
+        <div
+          className={`editTxtSection ${
+            mode === "editSize" ? "editFontSize" : ""
+          }`}
+          style={{
+            width: `${width}px`,
+            height: `${height}px`,
+            fontSize: `${width * 0.25}px`,
+          }}
+          onMouseMove={onMouseMove}
+          ref={sizeRef}
         >
-          <i class="bi bi-pencil-square"></i>
-        </button>
-        <button
-          type="button"
-          className="btn btn-sm btn-light text-gray ms-2"
-          onClick={handleDelete}
-          title="刪除"
-        >
-          <i class="bi bi-trash3-fill"></i>
-        </button>
-      </div>
+          <p style={text.styles}>{text.content}</p>
+        </div>
+      </Draggable>
     </div>
   );
 }
