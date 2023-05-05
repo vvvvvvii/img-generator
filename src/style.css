@@ -152,21 +152,31 @@
   overflow: hidden;
 }
 /* TxtShow */
-.editTxtSection {
+.edit-txt-section {
   word-break: break-all;
   padding: 0.25rem;
+  min-width: 100px;
+  min-height: 40px;
 }
-.editTxtSection:hover {
+.edit-txt-section:hover {
   border: 1px solid #000;
   background: #f5f5f5;
   opacity: 0.7;
+}
+.drag-txt-section:hover {
   cursor: move;
 }
-.editFontSize {
+.resize-box {
+  background: #fff;
   border: 1px solid #000;
-  background: #f5f5f5;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
-.editFontSize:hover {
+.resize-txt-section:hover,
+.resize-box:hover {
   cursor: nwse-resize;
 }
 
