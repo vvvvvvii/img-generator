@@ -1,3 +1,4 @@
+import { translateText } from "../api";
 import { useState, useEffect } from "react";
 
 function SearchBar({ onSubmit }) {
@@ -10,11 +11,12 @@ function SearchBar({ onSubmit }) {
   const handleChange = (e) => {
     setSearchTxt(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (e) {
       e.preventDefault();
     }
-    onSubmit(searchTxt);
+    const enSearchText = await translateText(searchTxt);
+    onSubmit(enSearchText);
   };
 
   return (
