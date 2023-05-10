@@ -1,22 +1,26 @@
 import { translateText } from "../api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-function SearchBar({ onSubmit }) {
-  const [searchTxt, setSearchTxt] = useState("lotus");
+function SearchBar({ setSearchTerm }) {
+  const [searchTxt, setSearchTxt] = useState("蓮花");
+
+  const handleSubmit = useCallback(
+    async (e) => {
+      if (e) {
+        e.preventDefault();
+      }
+      const enSearchText = await translateText(searchTxt);
+      setSearchTerm(enSearchText);
+    },
+    [searchTxt, setSearchTerm]
+  );
 
   useEffect(() => {
     handleSubmit();
-  }, []);
+  }, [handleSubmit]);
 
   const handleChange = (e) => {
     setSearchTxt(e.target.value);
-  };
-  const handleSubmit = async (e) => {
-    if (e) {
-      e.preventDefault();
-    }
-    const enSearchText = await translateText(searchTxt);
-    onSubmit(enSearchText);
   };
 
   return (
