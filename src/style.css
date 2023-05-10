@@ -85,6 +85,9 @@
 }
 
 /* StepTwo.js */
+.edit-section-container {
+  height: 600px;
+}
 .modal-background {
   position: fixed;
   z-index: 2;
@@ -178,6 +181,13 @@
 .resize-txt-section:hover,
 .resize-box:hover {
   cursor: nwse-resize;
+}
+
+/* TxtList */
+.txt-list {
+  overflow-y: scroll;
+  height: 450px;
+  margin-bottom: 1rem;
 }
 
 /* TxtCard */

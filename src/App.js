@@ -2,6 +2,7 @@ import { useState } from "react";
 import HomePage from "./page/HomePage";
 import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
+import ResultPage from "./page/ResultPage";
 
 function App() {
   const [nowPage, setNowPage] = useState("HomePage");
@@ -29,6 +30,14 @@ function App() {
         <StepTwo
           onChangePage={onChangePage}
           selectedImageUrl={selectedImageUrl}
+          nowPage={nowPage}
+        />
+      )}
+      {nowPage === "ResultPage" && (
+        <ResultPage
+          onChangePage={onChangePage}
+          selectedImageUrl={selectedImageUrl}
+          nowPage={nowPage}
         />
       )}
     </div>

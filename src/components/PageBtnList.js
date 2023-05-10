@@ -1,7 +1,7 @@
 import React from "react";
 
 function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
-  const pageList = ["HomePage", "StepOne", "StepTwo"];
+  const pageList = ["HomePage", "StepOne", "StepTwo", "ResultPage"];
 
   const handleChangePage = (action) => {
     const nowPageIndex = pageList.findIndex((page) => page === nowPage);
@@ -18,7 +18,7 @@ function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
     <div className="d-flex">
       <button
         onClick={() => handleChangePage("goPrev")}
-        className="btn btn-sm btn-light ms-3 text-gray"
+        className="btn btn-sm btn-light text-gray"
       >
         上一步
       </button>

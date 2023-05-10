@@ -2,7 +2,7 @@ import TxtCard from "./TxtCard";
 
 function TxtList({ texts, toggleModal, onDelete }) {
   return (
-    <div className="text-light">
+    <div className="txt-list">
       {texts.map((text) => (
         <TxtCard
           key={text.id}
