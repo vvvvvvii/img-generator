@@ -1,5 +1,3 @@
-import React from "react";
-
 function TxtShow({ text, toggleModal, onDelete }) {
   const openModal = () => {
     toggleModal(true, text);

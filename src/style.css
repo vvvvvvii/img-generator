@@ -146,6 +146,7 @@
 }
 /* workSpace */
 .image-edit-section {
+  position: relative;
   width: 600px;
   height: 600px;
   border: 3px solid #666;
@@ -156,6 +157,9 @@
 }
 /* TxtShow */
 .edit-txt-section {
+  position: absolute;
+  top: 0;
+  left: 0;
   word-break: break-all;
   padding: 0.25rem;
   min-width: 100px;

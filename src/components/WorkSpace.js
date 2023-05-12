@@ -5,7 +5,6 @@ function WorkSpace({ selectedImageUrl, texts }) {
   const workSpace = useRef();
 
   return (
-    // <div>
     <div
       style={{ backgroundImage: `url(${selectedImageUrl})` }}
       className="image-edit-section"
@@ -15,7 +14,6 @@ function WorkSpace({ selectedImageUrl, texts }) {
         <TxtShow key={text.id} text={text} workSpaceRef={workSpace} />
       ))}
     </div>
-    // </div>
   );
 }
 

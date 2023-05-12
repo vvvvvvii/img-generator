@@ -4,13 +4,13 @@ import ResizeText from "./ResizeTxt";
 
 function TxtShow({ text, workSpaceRef }) {
   const [mode, setMode] = useState("drag");
+  const [width, setWidth] = useState(100);
+  const [height, setHeight] = useState(40);
+  const [fontSize, setFontSize] = useState(16);
   const [defaultX, setDefaultX] = useState(0);
   const [defaultY, setDefaultY] = useState(0);
   const [boundingX, setBoundingX] = useState(0);
   const [boundingY, setBoundingY] = useState(0);
-  const [width, setWidth] = useState(100);
-  const [height, setHeight] = useState(40);
-  const [fontSize, setFontSize] = useState(16);
 
   useEffect(() => {
     // 取得 workSpaceRef 和整個網站的空隙
@@ -61,22 +61,6 @@ function TxtShow({ text, workSpaceRef }) {
         />
       )}
     </>
-
-    // <Draggable defaultPosition={{ x: 0, y: 0 }} disabled={mode === "resize"}>
-    //   <div
-    //     className="editTxtSection"
-    //     style={{
-    //       width: `${width}px`,
-    //       height: `${height}px`,
-    //       fontSize: `${width * 0.15}px`,
-    //       lineHeight: height * 0.005,
-    //     }}
-    //     ref={sizeRef}
-    //   >
-    //     <p style={text.styles}>{text.content}</p>
-    //     <div className="resize-box" onMouseDown={onMouseDown}></div>
-    //   </div>
-    // </Draggable>
   );
 }
 
