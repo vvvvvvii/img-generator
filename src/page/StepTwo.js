@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { toJpeg } from "html-to-image";
+
+import { useState, useRef, useCallback, useEffect } from "react";
 import WorkSpace from "../components/WorkSpace";
 import TxtList from "../components/TxtList";
 import EditModal from "../components/EditModal";
 import PageBtnList from "../components/PageBtnList";
 
-function StepTwo({ selectedImageUrl, onChangePage, nowPage }) {
+function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
   const [texts, setTexts] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [modalTxt, setModalTxt] = useState({});
+
+  const workSpaceRef = useRef();
 
   const toggleModal = (showModalBoolean, modalText) => {
     if (showModalBoolean) {
@@ -39,6 +43,20 @@ function StepTwo({ selectedImageUrl, onChangePage, nowPage }) {
     setTexts(updateTexts);
   };
 
+  const generateImgData = useCallback(() => {
+    if (workSpaceRef.current === null) {
+      return;
+    }
+    toJpeg(workSpaceRef.current, { cacheBust: true })
+      .then(async (dataUrl) => {
+        const url = await dataUrl;
+        setImageResult(url);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [workSpaceRef, setImageResult]);
+
   return (
     <div>
       <div className="inner-page-container">
@@ -47,9 +65,19 @@ function StepTwo({ selectedImageUrl, onChangePage, nowPage }) {
         </h2>
         <div className="row edit-section-container">
           <div className="col-6">
-            <WorkSpace selectedImageUrl={selectedImageUrl} texts={texts} />
+            <WorkSpace
+              selectedImageUrl={selectedImageUrl}
+              texts={texts}
+              workSpaceRef={workSpaceRef}
+            />
           </div>
           <div className="col-6 d-flex flex-column justify-content-between">
+            <button
+              onClick={() => toggleModal(true)}
+              className="btn btn-sm btn-light text-gray"
+            >
+              新增
+            </button>
             <TxtList
               texts={texts}
               toggleModal={toggleModal}
@@ -58,14 +86,14 @@ function StepTwo({ selectedImageUrl, onChangePage, nowPage }) {
             <div className="d-flex justify-content-between">
               <PageBtnList
                 nowPage={nowPage}
-                showNextBtn={selectedImageUrl}
+                showNextBtn={false}
                 onChangePage={onChangePage}
               />
               <button
-                onClick={() => toggleModal(true)}
+                onClick={generateImgData}
                 className="btn btn-sm w-50 btn-light text-gray"
               >
-                新增
+                生成圖片
               </button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HomePage from "./page/HomePage";
 import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
@@ -7,6 +7,13 @@ import ResultPage from "./page/ResultPage";
 function App() {
   const [nowPage, setNowPage] = useState("HomePage");
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
+  const [imageResult, setImageResult] = useState("");
+
+  useEffect(() => {
+    if (imageResult) {
+      onChangePage("ResultPage");
+    }
+  }, [imageResult]);
 
   const onChangePage = (pageName) => {
     setNowPage(pageName);
@@ -30,13 +37,15 @@ function App() {
         <StepTwo
           onChangePage={onChangePage}
           selectedImageUrl={selectedImageUrl}
+          imageResult={imageResult}
+          setImageResult={setImageResult}
           nowPage={nowPage}
         />
       )}
       {nowPage === "ResultPage" && (
         <ResultPage
           onChangePage={onChangePage}
-          selectedImageUrl={selectedImageUrl}
+          imageResult={imageResult}
           nowPage={nowPage}
         />
       )}

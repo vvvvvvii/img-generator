@@ -208,3 +208,10 @@
   word-break: break-all;
   max-width: 75%;
 }
+
+/* ResultPage */
+.result-img {
+  width: 400px;
+  height: 400px;
+  margin-bottom: 1.5rem;
+}
