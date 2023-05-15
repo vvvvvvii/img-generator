@@ -43,11 +43,7 @@ function App() {
         />
       )}
       {nowPage === "ResultPage" && (
-        <ResultPage
-          onChangePage={onChangePage}
-          imageResult={imageResult}
-          nowPage={nowPage}
-        />
+        <ResultPage onChangePage={onChangePage} imageResult={imageResult} />
       )}
     </div>
   );

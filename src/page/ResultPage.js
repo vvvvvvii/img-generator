@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import { toJpeg, toPng } from "html-to-image";
 import download from "downloadjs";
 
-function ResultPage({ imageResult }) {
+function ResultPage({ imageResult, onChangePage }) {
   const downloadImgRef = useRef();
 
   const downloadImg = useCallback((fileType) => {
@@ -56,6 +56,13 @@ function ResultPage({ imageResult }) {
           onClick={() => downloadImg("png")}
         >
           下載 PNG
+        </button>
+        <button
+          type="button"
+          className="btn btn-sm btn-warning ms-3"
+          onClick={() => onChangePage("HomePage")}
+        >
+          再做一張
         </button>
       </div>
     </div>
