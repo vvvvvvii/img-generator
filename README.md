@@ -41,9 +41,10 @@
 
 #### 第三方套件 / 框架
 
-- [axios](https://www.npmjs.com/package/react-draggable)：抓取 API
+- [axios](https://www.npmjs.com/package/axios)：抓取 API
 - [Bootstrap@5.2.3](https://blog.getbootstrap.com/2022/11/22/bootstrap-5-2-3/)：CSS 框架
 - [downloadjs](https://www.npmjs.com/package/downloadjs)：搭配 html-to-image 下載 PNG
+- [gh-pages](https://www.npmjs.com/package/gh-pages)：React 打包上傳 gh-pages 分支
 - [html-to-image](https://www.npmjs.com/package/html-to-image)：下載圖片
 - [React-Draggable](https://www.npmjs.com/package/react-draggable)：拖曳方塊
 - [React Lazy Load Image Component](https://www.npmjs.com/package/react-lazy-load-image-component)：圖片延遲顯示效果
