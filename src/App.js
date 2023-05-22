@@ -4,6 +4,10 @@ import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
 import ResultPage from "./page/ResultPage";
 
+const wrapperStyle = {
+  background: "#000",
+};
+
 function App() {
   const [nowPage, setNowPage] = useState("HomePage");
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
@@ -23,7 +27,7 @@ function App() {
   };
 
   return (
-    <div className="wrapper">
+    <div style={wrapperStyle}>
       {nowPage === "HomePage" && <HomePage onChangePage={onChangePage} />}
       {nowPage === "StepOne" && (
         <StepOne

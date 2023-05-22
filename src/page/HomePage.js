@@ -1,11 +1,26 @@
+import Typography from "@mui/material/Typography";
+import FullContainer from "../components/FullContainer";
 import FancyBtn from "../components/FancyBtn";
+
+const welcomeTitleStyle = {
+  color: "#d4ce41",
+  textShadow: "3px 3px #fa8080, 5px 4px #888",
+};
 
 function HomePage({ onChangePage }) {
   return (
-    <div className="home-container">
-      <h1 className="welcome-title title mb-6">長輩圖生成器</h1>
+    <FullContainer>
+      <Typography
+        variant="h2"
+        component="h1"
+        fontWeight="fontWeightBold"
+        mb={6}
+        style={welcomeTitleStyle}
+      >
+        長輩圖生成器
+      </Typography>
       <FancyBtn onChangePage={onChangePage} />
-    </div>
+    </FullContainer>
   );
 }
 

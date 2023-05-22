@@ -1,6 +1,6 @@
 import { toJpeg } from "html-to-image";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import WorkSpace from "../components/WorkSpace";
 import TxtList from "../components/TxtList";
 import EditModal from "../components/EditModal";
