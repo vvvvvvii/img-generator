@@ -6,6 +6,7 @@ import ResultPage from "./page/ResultPage";
 
 const wrapperStyle = {
   background: "#000",
+  minHeight: "100vh",
 };
 
 function App() {

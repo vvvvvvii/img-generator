@@ -1,18 +1,21 @@
+import Grid from "@mui/material/Grid";
 import ImageShowBtn from "./ImageShowBtn";
 
 function ImageList({ images, onChangeBackgroundUrl, selectedImageUrl }) {
   return (
-    <div className="row">
+    <Grid container spacing={2}>
       {images &&
         images.map((image) => (
-          <ImageShowBtn
-            image={image}
-            key={image.id}
-            onChangeBackgroundUrl={onChangeBackgroundUrl}
-            selectedImageUrl={selectedImageUrl}
-          />
+          <Grid item xs={3}>
+            <ImageShowBtn
+              key={image.id}
+              image={image}
+              onChangeBackgroundUrl={onChangeBackgroundUrl}
+              selectedImageUrl={selectedImageUrl}
+            />
+          </Grid>
         ))}
-    </div>
+    </Grid>
   );
 }
 

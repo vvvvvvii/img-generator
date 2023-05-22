@@ -1,8 +1,11 @@
 import { searchImages } from "../api";
 import { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import InnerPageContainer from "../components/InnerPageContainer";
+import StageTitle from "../components/StageTitle";
 import SearchBar from "../components/SearchBar";
-import ImageList from "../components/ImageList";
 import ErrorMsg from "../components/ErrorMsg";
+import ImageList from "../components/ImageList";
 import PageBtnList from "../components/PageBtnList";
 
 function StepOne({
@@ -23,26 +26,26 @@ function StepOne({
   }, [searchTerm]);
 
   return (
-    <div className="inner-page-container">
-      <h2 className="stage-title title mb-5">
-        第一步： <span>選擇圖片</span>
-      </h2>
+    <InnerPageContainer>
+      <StageTitle title={"第一步："} subtitle={"選擇圖片"} />
       <SearchBar setSearchTerm={setSearchTerm} />
-      {images.length > 0 ? (
-        <ImageList
-          images={images}
-          onChangeBackgroundUrl={onChangeBackgroundUrl}
-          selectedImageUrl={selectedImageUrl}
-        />
-      ) : (
-        <ErrorMsg />
-      )}
+      <Box mb={3}>
+        {images.length > 0 ? (
+          <ImageList
+            images={images}
+            onChangeBackgroundUrl={onChangeBackgroundUrl}
+            selectedImageUrl={selectedImageUrl}
+          />
+        ) : (
+          <ErrorMsg />
+        )}
+      </Box>
       <PageBtnList
         nowPage={nowPage}
         showNextBtn={selectedImageUrl}
         onChangePage={onChangePage}
       />
-    </div>
+    </InnerPageContainer>
   );
 }
 

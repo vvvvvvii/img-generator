@@ -1,4 +1,15 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Button from "@mui/material/Button";
+
+const imageStyle = {
+  width: "300px",
+  height: "300px",
+  objectFit: "cover",
+  boxSizing: "border-box",
+};
+const selectedImageStyle = {
+  border: "5px solid #fa8080",
+};
 
 function ImageShowBtn({ image, onChangeBackgroundUrl, selectedImageUrl }) {
   const handleClick = (url) => {
@@ -6,20 +17,18 @@ function ImageShowBtn({ image, onChangeBackgroundUrl, selectedImageUrl }) {
   };
 
   return (
-    <button
-      type="button"
-      className="col-3 mb-6 search-result-btn"
-      onClick={() => handleClick(image.urls.full)}
-    >
+    <Button type="button" mb={6} onClick={() => handleClick(image.urls.full)}>
       <LazyLoadImage
         alt={image.alt_description}
         src={image.urls.small}
-        className={`search-result-img ${
-          selectedImageUrl === image.urls.full ? "selected-img" : ""
-        }`}
+        style={
+          selectedImageUrl === image.urls.full
+            ? { ...imageStyle, ...selectedImageStyle }
+            : imageStyle
+        }
         effect="blur"
       />
-    </button>
+    </Button>
   );
 }
 

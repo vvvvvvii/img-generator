@@ -1,4 +1,4 @@
-import React from "react";
+import Button from "@mui/material/Button";
 
 function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
   const pageList = ["HomePage", "StepOne", "StepTwo", "ResultPage"];
@@ -16,19 +16,26 @@ function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
 
   return (
     <div className="d-flex">
-      <button
+      <Button
+        type="button"
+        variant="outlined"
+        size="large"
         onClick={() => handleChangePage("goPrev")}
         className="btn btn-sm btn-light text-gray"
       >
         上一步
-      </button>
+      </Button>
       {showNextBtn && (
-        <button
+        <Button
+          type="button"
+          variant="contained"
+          size="large"
+          sx={{ marginLeft: ".75rem" }}
           onClick={() => handleChangePage("goNext")}
           className="btn btn-sm btn-light ms-3 text-gray"
         >
           下一步
-        </button>
+        </Button>
       )}
     </div>
   );

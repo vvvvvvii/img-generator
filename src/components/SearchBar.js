@@ -1,5 +1,20 @@
 import { translateText } from "../api";
 import { useState, useEffect, useCallback } from "react";
+import Box from "@mui/material/Box";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+
+const searchbarStyle = {
+  background: "#fefefe1a",
+  color: "#fff",
+};
+const searchbarLabelStyle = {
+  color: "#fff",
+};
 
 function SearchBar({ setSearchTerm }) {
   const [searchTxt, setSearchTxt] = useState("蓮花");
@@ -24,21 +39,32 @@ function SearchBar({ setSearchTerm }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="d-flex align-center mb-5">
-      <input
-        type="text"
-        placeholder={"輸入關鍵字"}
-        value={searchTxt}
-        onChange={handleChange}
-        className="searchbar"
-      />
-      <button
-        onClick={handleSubmit}
-        className="btn btn-sm btn-light ms-3 text-gray"
-      >
-        搜尋
-      </button>
-    </form>
+    <Box component="form" autoComplete="off" mb={3} onSubmit={handleSubmit}>
+      <FormControl>
+        <InputLabel htmlFor="component-outlined" style={searchbarLabelStyle}>
+          輸入關鍵字
+        </InputLabel>
+        <OutlinedInput
+          id="component-outlined"
+          value={searchTxt}
+          color="secondary"
+          style={searchbarStyle}
+          onChange={handleChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleSubmit}
+                edge="end"
+                color="secondary"
+              >
+                <SearchOutlinedIcon />
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl>
+    </Box>
   );
 }
 

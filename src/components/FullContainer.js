@@ -1,4 +1,4 @@
-const fullContainer = {
+const fullContainerStyle = {
   height: "100vh",
   display: "flex",
   flexDirection: "column",
@@ -7,7 +7,7 @@ const fullContainer = {
 };
 
 function FullContainer({ children }) {
-  return <div style={fullContainer}>{children}</div>;
+  return <div style={fullContainerStyle}>{children}</div>;
 }
 
 export default FullContainer;
