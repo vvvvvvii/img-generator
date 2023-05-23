@@ -1,7 +1,7 @@
 import { styled } from "@mui/system";
-import Button from "@mui/material/Button";
+import BrickBtn from "./BrickBtn";
 
-const FancyButtonStyle = styled(Button)({
+const FancyButtonStyle = styled(BrickBtn)({
   background: "#d959f6",
   color: " #e9f903",
   "&:hover": {
@@ -27,26 +27,14 @@ const FancyButtonStyle = styled(Button)({
   },
   "@keyframes zoom": {
     to: {
-      top: "-5%",
-      left: "-5%",
-      width: "110%",
-      height: "110%",
+      width: "7%",
+      height: "7%",
     },
   },
 });
 
-function FancyBtn({ onChangePage }) {
-  const handleClick = () => {
-    onChangePage("StepOne");
-  };
-
-  return (
-    <div>
-      <FancyButtonStyle size="large" title="點擊開始" onClick={handleClick}>
-        點擊進入
-      </FancyButtonStyle>
-    </div>
-  );
+function FancyBtn({ children, ...rest }) {
+  return <FancyButtonStyle {...rest}>{children}</FancyButtonStyle>;
 }
 
 export default FancyBtn;

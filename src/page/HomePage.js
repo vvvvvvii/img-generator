@@ -8,6 +8,10 @@ const welcomeTitleStyle = {
 };
 
 function HomePage({ onChangePage }) {
+  const handlePageChange = () => {
+    onChangePage("StepOne");
+  };
+
   return (
     <FullContainer>
       <Typography
@@ -19,7 +23,13 @@ function HomePage({ onChangePage }) {
       >
         長輩圖生成器
       </Typography>
-      <FancyBtn onChangePage={onChangePage} />
+      <FancyBtn
+        size="large"
+        title="點擊開始"
+        onClick={() => handlePageChange()}
+      >
+        點擊進入
+      </FancyBtn>
     </FullContainer>
   );
 }
