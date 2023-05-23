@@ -49,3 +49,12 @@
 - [Material Icons](https://mui.com/material-ui/material-icons/)：Icons
 - [React-Draggable](https://www.npmjs.com/package/react-draggable)：拖曳方塊
 - [React Lazy Load Image Component](https://www.npmjs.com/package/react-lazy-load-image-component)：圖片延遲顯示效果
+
+## 音效版權標示：
+
+#### Funny Synth Voice Oohs Loop
+
+- Artist: Alexander Blu
+- 無變更原始版本
+- [原始連結](https://orangefreesounds.com/funny-synth-voice-oohs-loop/)
+- [Creative-Commons-Attribution-4.0-International-License] (https://creativecommons.org/licenses/by/4.0/deed.zh_TW)

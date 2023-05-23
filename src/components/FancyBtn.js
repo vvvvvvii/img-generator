@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { styled } from "@mui/system";
+import sound from "../assets/sound.mp3";
 import BrickBtn from "./BrickBtn";
 
 const FancyButtonStyle = styled(BrickBtn)({
@@ -27,14 +29,42 @@ const FancyButtonStyle = styled(BrickBtn)({
   },
   "@keyframes zoom": {
     to: {
-      width: "7%",
-      height: "7%",
+      width: "100px",
+      height: "50px",
     },
   },
 });
 
+const audio = new Audio(sound);
+
 function FancyBtn({ children, ...rest }) {
-  return <FancyButtonStyle {...rest}>{children}</FancyButtonStyle>;
+  useEffect(() => {
+    return () => {
+      stopMusic();
+    };
+  }, []);
+  const playMusic = () => {
+    audio.play();
+    // loop play
+    audio.addEventListener("ended", () => {
+      audio.play();
+    });
+  };
+  const stopMusic = () => {
+    audio.pause();
+  };
+
+  return (
+    <div>
+      <FancyButtonStyle
+        {...rest}
+        onMouseEnter={playMusic}
+        onMouseLeave={stopMusic}
+      >
+        {children}
+      </FancyButtonStyle>
+    </div>
+  );
 }
 
 export default FancyBtn;

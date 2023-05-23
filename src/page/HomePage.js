@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Typography from "@mui/material/Typography";
 import FullContainer from "../components/FullContainer";
 import FancyBtn from "../components/FancyBtn";
+import InfoToast from "../components/InfoToast";
 
 const welcomeTitleStyle = {
   color: "#d4ce41",
@@ -8,12 +10,18 @@ const welcomeTitleStyle = {
 };
 
 function HomePage({ onChangePage }) {
+  const [modalShow, setModalShow] = useState(true);
+
+  const closeModal = () => {
+    setModalShow(false);
+  };
   const handlePageChange = () => {
     onChangePage("StepOne");
   };
 
   return (
     <FullContainer>
+      {modalShow && <InfoToast closeModal={closeModal} />}
       <Typography
         variant="h2"
         component="h1"
