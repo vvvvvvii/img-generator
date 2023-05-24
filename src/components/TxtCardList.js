@@ -1,8 +1,13 @@
 import TxtCard from "./TxtCard";
 
-function TxtList({ texts, toggleModal, onDelete }) {
+const TxtCardListStyle = {
+  overflowY: "scroll",
+  height: "450px",
+  marginBottom: "1rem",
+};
+function TxtCardList({ texts, toggleModal, onDelete }) {
   return (
-    <div className="txt-list">
+    <div style={TxtCardListStyle}>
       {texts.map((text) => (
         <TxtCard
           key={text.id}
@@ -15,4 +20,4 @@ function TxtList({ texts, toggleModal, onDelete }) {
   );
 }
 
-export default TxtList;
+export default TxtCardList;

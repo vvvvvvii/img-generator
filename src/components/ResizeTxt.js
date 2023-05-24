@@ -1,5 +1,35 @@
-import Draggable from "react-draggable";
 import { useState, useRef } from "react";
+import { styled } from "@mui/system";
+import Typography from "@mui/material/Typography";
+import Draggable from "react-draggable";
+
+const TxtStyle = styled("div")({
+  position: "absolute",
+  top: "0",
+  left: "0",
+  wordBreak: "break-all",
+  padding: "0.25rem",
+  minWidth: "100px",
+  minHeight: "40px",
+  "&:hover": {
+    background: "#fff",
+    border: "1px solid #000",
+    cursor: "nwse-resize",
+  },
+});
+const ResizeBoxStyle = styled("div")({
+  background: "transparent",
+  width: "8px",
+  height: "8px",
+  position: "absolute",
+  bottom: "0",
+  right: "0",
+  "&:hover": {
+    background: "#fff",
+    border: "1px solid #000",
+    cursor: "nwse-resize",
+  },
+});
 
 function ResizeText({
   text,
@@ -46,22 +76,21 @@ function ResizeText({
       bounds="parent"
       disabled
     >
-      <div
-        className="edit-txt-section resize-txt-section"
+      <TxtStyle
         style={{ width: `${width}px`, height: `${height}px` }}
         ref={sizeRef}
         onClick={() => modeChange("drag")}
       >
-        <p
+        <Typography
           style={{
             ...text.styles,
             fontSize: `${fontSize}px`,
           }}
         >
           {text.content}
-        </p>
-        <div className="resize-box" onMouseDown={onMouseDown}></div>
-      </div>
+        </Typography>
+        <ResizeBoxStyle onMouseDown={onMouseDown} />
+      </TxtStyle>
     </Draggable>
   );
 }

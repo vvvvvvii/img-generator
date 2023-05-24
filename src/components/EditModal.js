@@ -1,4 +1,58 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { styled } from "@mui/system";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import ClearSharpIcon from "@mui/icons-material/ClearSharp";
+import { IconButton } from "@mui/material";
+import BrickBtn from "./BrickBtn";
+
+const ModalStyle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "80%",
+  background: " #f5f5f5",
+  borderRadius: "0.5rem",
+  textAlign: "center",
+};
+const ModalHeader = styled(Box)({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  borderBottom: "1px solid #888",
+  padding: "1rem 1.5rem",
+  marginBottom: "1rem",
+});
+const ModalBody = styled(Box)({
+  padding: "2rem 2.5rem",
+});
+const FormGroupStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+};
+const OptionStyle = {
+  padding: "1.5rem",
+  margin: "0 .25rem",
+  borderRadius: "0.5rem",
+  border: "1px solid #999",
+  "&:hover": {
+    cursor: "pointer",
+    border: "1px solid #fa8080",
+  },
+};
+const SelectedStyle = {
+  border: "1px solid #fa8080",
+};
+const UnselectedStyle = {
+  "&:active": {
+    boxShadow: "inset 1px 1px 0 .5px #fbb4b4, inset -1px -1px 0 .5px #fbb4b4",
+    border: "1px solid #fbb4b4",
+  },
+};
 
 function EditModal({ modalTxt, toggleModal, onSubmit }) {
   const [id, setId] = useState(0);
@@ -106,84 +160,86 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
   };
 
   return (
-    <div>
-      <div className="modal-background" onClick={closeModal}></div>
-      <div className="modal-outer">
-        <div className="modal-header">
-          <h3>編輯文字</h3>
-          <button type="button" className="btn btn-sm" onClick={closeModal}>
-            X
-          </button>
-        </div>
-        <div className="modal-body">
-          <div className="row justify-content-center align-items-center mb-4">
-            <input
-              type="text"
+    <Modal disableAutoFocus open={true} onClose={closeModal}>
+      <Box sx={ModalStyle}>
+        <ModalHeader>
+          <Typography variant="h5" component="h3">
+            編輯文字
+          </Typography>
+          <IconButton onClick={closeModal}>
+            <ClearSharpIcon />
+          </IconButton>
+        </ModalHeader>
+        <ModalBody>
+          <Box sx={FormGroupStyle} mb={4}>
+            <TextField
               placeholder="輸入文字"
-              className="input col-6"
               value={content}
+              style={{ width: "40%" }}
               onChange={handleTxtChange}
             />
-            <div className="col-3 ms-3">
-              <div className="mb-1">
+            <Box ml={3}>
+              <Box mb={1}>
                 <label htmlFor="mainColor" className="label">
                   主色
                 </label>
                 <input
                   type="color"
                   id="mainColor"
-                  className="ms-3"
                   value={mainColor}
+                  style={{ marginLeft: ".5rem" }}
                   onChange={(e) => handleColorChange(e, "main")}
                 />
-              </div>
-              <div>
+              </Box>
+              <Box>
                 <label htmlFor="subColor" className="label">
                   輔色
                 </label>
                 <input
                   type="color"
                   id="subColor"
-                  className="ms-3"
                   value={subColor}
+                  style={{ marginLeft: ".5rem" }}
                   onChange={(e) => handleColorChange(e, "sub")}
                 />
-              </div>
-            </div>
-          </div>
-          <div className="d-flex justify-content-center mb-5">
+              </Box>
+            </Box>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "center" }} mb={5}>
             {txtStyles.map((txtStyle, styleKey) => (
-              <button
-                type="button"
-                className={`btn btn-sm text-center mx-2 p-3 ${
+              <Box
+                sx={[
+                  OptionStyle,
                   selectedStyle === txtStyle.name
-                    ? "selected-btn"
-                    : "unselected-btn"
-                }`}
+                    ? SelectedStyle
+                    : UnselectedStyle,
+                ]}
                 key={`style${styleKey}`}
                 onClick={() => handleStyleChange(txtStyle.name)}
               >
-                <p className="fs-2" style={txtStyle.styleObj}>
+                <Typography
+                  variant="h5"
+                  component="p"
+                  style={{ ...txtStyle.styleObj, marginBottom: ".5rem" }}
+                >
                   {content.slice(0, 3) || "早安～"}
-                </p>
+                </Typography>
                 {txtStyle.infoTxt}
-              </button>
+              </Box>
             ))}
-          </div>
-          <div className="text-center">
-            <button
-              type="button"
-              className={`btn btn-sm w-50 ${
-                content.length > 0 ? "" : "btn-disabled"
-              }`}
-              onClick={content.length > 0 ? handleSubmit : null}
-            >
-              確定
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+          <BrickBtn
+            fullWidth
+            type="button"
+            variant="contained"
+            disabled={content.length === 0}
+            onClick={content.length > 0 ? handleSubmit : null}
+          >
+            確定
+          </BrickBtn>
+        </ModalBody>
+      </Box>
+    </Modal>
   );
 }
 

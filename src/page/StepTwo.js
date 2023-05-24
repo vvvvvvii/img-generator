@@ -1,10 +1,14 @@
 import { toJpeg } from "html-to-image";
-
 import { useState, useRef, useCallback } from "react";
-import WorkSpace from "../components/WorkSpace";
-import TxtList from "../components/TxtList";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import BrickBtn from "../components/BrickBtn";
 import EditModal from "../components/EditModal";
+import InnerPageContainer from "../components/InnerPageContainer";
 import PageBtnList from "../components/PageBtnList";
+import StageTitle from "../components/StageTitle";
+import TxtCardList from "../components/TxtCardList";
+import WorkSpace from "../components/WorkSpace";
 
 function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
   const [texts, setTexts] = useState([]);
@@ -59,46 +63,62 @@ function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
 
   return (
     <div>
-      <div className="inner-page-container">
-        <h2 className="stage-title title mb-5">
-          第二步： <span>添加文字</span>
-        </h2>
-        <div className="row edit-section-container">
-          <div className="col-6">
+      <InnerPageContainer>
+        <StageTitle title={"第二步："} subtitle={"添加文字"} />
+        <Grid
+          container
+          className="row edit-section-container"
+          sx={{ height: "600px" }}
+        >
+          <Grid item xs={6}>
             <WorkSpace
               selectedImageUrl={selectedImageUrl}
               texts={texts}
               workSpaceRef={workSpaceRef}
             />
-          </div>
-          <div className="col-6 d-flex flex-column justify-content-between">
-            <button
+          </Grid>
+          <Grid
+            item
+            xs={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
+            <BrickBtn
+              type="button"
+              variant="contained"
+              size="large"
               onClick={() => toggleModal(true)}
               className="btn btn-sm btn-light text-gray"
             >
               新增
-            </button>
-            <TxtList
+            </BrickBtn>
+            <TxtCardList
               texts={texts}
               toggleModal={toggleModal}
               onDelete={onDelete}
             />
-            <div className="d-flex justify-content-between">
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <PageBtnList
                 nowPage={nowPage}
                 showNextBtn={false}
                 onChangePage={onChangePage}
               />
-              <button
+              <BrickBtn
+                type="button"
+                variant="contained"
+                size="large"
                 onClick={generateImgData}
                 className="btn btn-sm w-50 btn-light text-gray"
               >
                 生成圖片
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+              </BrickBtn>
+            </Box>
+          </Grid>
+        </Grid>
+      </InnerPageContainer>
       {modalShow && (
         <EditModal
           modalTxt={modalTxt}

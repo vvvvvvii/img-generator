@@ -1,4 +1,25 @@
-function TxtShow({ text, toggleModal, onDelete }) {
+import { styled } from "@mui/system";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+function TxtCard({ text, toggleModal, onDelete }) {
+  const TxtCardStyle = styled("div")({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    background: "#fff",
+    boxShadow: "2px 2px #999, 2px 0px #999",
+    padding: "1rem 1.75rem",
+    marginBottom: "1.5rem",
+  });
+  const CardTextStyle = {
+    ...text.styles,
+    wordBreak: "break-all",
+    maxWidth: "75%",
+  };
+
   const openModal = () => {
     toggleModal(true, text);
   };
@@ -7,30 +28,23 @@ function TxtShow({ text, toggleModal, onDelete }) {
   };
 
   return (
-    <div className="card">
-      <div style={text.styles} className="card-text">
-        {text.content}
-      </div>
+    <TxtCardStyle>
+      <Typography style={CardTextStyle}>{text.content}</Typography>
       <div>
-        <button
-          type="button"
-          className="btn btn-sm btn-light text-gray"
-          onClick={openModal}
-          title="編輯"
-        >
-          <i className="bi bi-pencil-square"></i>
-        </button>
-        <button
-          type="button"
-          className="btn btn-sm btn-light text-gray ms-2"
+        <IconButton size="small" onClick={openModal} title="編輯">
+          <EditIcon />
+        </IconButton>
+        <IconButton
+          size="small"
+          sx={{ marginLeft: ".75rem" }}
           onClick={handleDelete}
           title="刪除"
         >
-          <i className="bi bi-trash3-fill"></i>
-        </button>
+          <DeleteIcon />
+        </IconButton>
       </div>
-    </div>
+    </TxtCardStyle>
   );
 }
 
-export default TxtShow;
+export default TxtCard;

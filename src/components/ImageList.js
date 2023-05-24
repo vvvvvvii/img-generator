@@ -6,9 +6,8 @@ function ImageList({ images, onChangeBackgroundUrl, selectedImageUrl }) {
     <Grid container spacing={2}>
       {images &&
         images.map((image) => (
-          <Grid item xs={3}>
+          <Grid key={image.id} item xs={3}>
             <ImageShowBtn
-              key={image.id}
               image={image}
               onChangeBackgroundUrl={onChangeBackgroundUrl}
               selectedImageUrl={selectedImageUrl}
