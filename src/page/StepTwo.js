@@ -89,6 +89,7 @@ function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
             <BrickBtn
               type="button"
               variant="contained"
+              color="default"
               size="large"
               onClick={() => toggleModal(true)}
               className="btn btn-sm btn-light text-gray"
@@ -109,6 +110,7 @@ function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
               <BrickBtn
                 type="button"
                 variant="contained"
+                color="secondary"
                 size="large"
                 onClick={generateImgData}
                 className="btn btn-sm w-50 btn-light text-gray"

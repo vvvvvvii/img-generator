@@ -1,6 +1,15 @@
 import { useCallback, useRef } from "react";
 import { toJpeg, toPng } from "html-to-image";
 import download from "downloadjs";
+import BrickBtn from "../components/BrickBtn";
+import FullContainer from "../components/FullContainer";
+import StageTitle from "../components/StageTitle";
+
+const ResultImgStyle = {
+  width: "400px",
+  height: "400px",
+  marginBottom: "1.5rem",
+};
 
 function ResultPage({ imageResult, onChangePage }) {
   const downloadImgRef = useRef();
@@ -32,40 +41,45 @@ function ResultPage({ imageResult, onChangePage }) {
   }, []);
 
   return (
-    <div className="home-container">
-      <h2 className="stage-title title mb-5">完成！</h2>
+    <FullContainer>
+      <StageTitle title={"完成！"} mb={5}></StageTitle>
       {imageResult && (
         <img
           src={imageResult}
-          alt=""
-          className="result-img"
+          alt="成品圖片"
+          style={ResultImgStyle}
           ref={downloadImgRef}
         />
       )}
       <div className="d-flex">
-        <button
+        <BrickBtn
           type="button"
-          className="btn btn-sm btn-warning"
+          color="default"
+          variant="contained"
           onClick={() => downloadImg("jpeg")}
         >
           下載 JPEG
-        </button>
-        <button
+        </BrickBtn>
+        <BrickBtn
           type="button"
-          className="btn btn-sm btn-warning ms-3"
+          color="default"
+          variant="contained"
+          sx={{ marginLeft: "0.75rem" }}
           onClick={() => downloadImg("png")}
         >
           下載 PNG
-        </button>
-        <button
+        </BrickBtn>
+        <BrickBtn
           type="button"
-          className="btn btn-sm btn-warning ms-3"
+          color="default"
+          variant="contained"
+          sx={{ marginLeft: "0.75rem" }}
           onClick={() => onChangePage("HomePage")}
         >
           再做一張
-        </button>
+        </BrickBtn>
       </div>
-    </div>
+    </FullContainer>
   );
 }
 

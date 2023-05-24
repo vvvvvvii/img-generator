@@ -19,6 +19,7 @@ function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
       <BrickBtn
         type="button"
         variant="outlined"
+        color="default"
         size="large"
         onClick={() => handlePageChange("goPrev")}
       >
@@ -28,6 +29,7 @@ function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
         <BrickBtn
           type="button"
           variant="contained"
+          color="secondary"
           size="large"
           sx={{ marginLeft: ".75rem" }}
           onClick={() => handlePageChange("goNext")}

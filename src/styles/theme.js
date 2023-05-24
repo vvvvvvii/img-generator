@@ -9,6 +9,9 @@ const theme = createTheme({
       main: "#fa8080",
       light: "#fbb4b4",
     },
+    default: {
+      main: "#fff",
+    },
   },
 });
 export default theme;

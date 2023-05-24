@@ -229,9 +229,10 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
             ))}
           </Box>
           <BrickBtn
-            fullWidth
             type="button"
             variant="contained"
+            color="primary"
+            fullWidth
             disabled={content.length === 0}
             onClick={content.length > 0 ? handleSubmit : null}
           >
