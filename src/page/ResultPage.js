@@ -1,14 +1,24 @@
 import { useCallback, useRef } from "react";
 import { toJpeg, toPng } from "html-to-image";
 import download from "downloadjs";
+import Radium from "radium";
 import BrickBtn from "../components/BrickBtn";
 import FullContainer from "../components/FullContainer";
 import StageTitle from "../components/StageTitle";
 
 const ResultImgStyle = {
-  width: "400px",
-  height: "400px",
-  marginBottom: "1.5rem",
+  width: "250px",
+  height: "250px",
+  marginBottom: "3rem",
+  "@media(min-width:576px)": {
+    width: "300px",
+    height: "300px",
+    marginBottom: "1.5rem",
+  },
+  "@media(min-width:768px)": {
+    width: "400px",
+    height: "400px",
+  },
 };
 
 function ResultPage({ imageResult, onChangePage }) {
@@ -46,8 +56,8 @@ function ResultPage({ imageResult, onChangePage }) {
       {imageResult && (
         <img
           src={imageResult}
-          alt="成品圖片"
           style={ResultImgStyle}
+          alt="成品圖片"
           ref={downloadImgRef}
         />
       )}
@@ -83,4 +93,4 @@ function ResultPage({ imageResult, onChangePage }) {
   );
 }
 
-export default ResultPage;
+export default Radium(ResultPage);

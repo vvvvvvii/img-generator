@@ -22,5 +22,17 @@ const theme = createTheme({
       main: "#fff",
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          padding: "6px 10px",
+          "@media(min-width:576px)": {
+            padding: "8px 22px",
+          },
+        }),
+      },
+    },
+  },
 });
 export default theme;
