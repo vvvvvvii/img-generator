@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import Typography from "@mui/material/Typography";
 import FullContainer from "../components/FullContainer";
 import FancyBtn from "../components/FancyBtn";
@@ -10,6 +12,8 @@ const welcomeTitleStyle = {
 };
 
 function HomePage({ onChangePage }) {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.up("md"));
   const [modalShow, setModalShow] = useState(true);
 
   const closeModal = () => {
@@ -23,7 +27,7 @@ function HomePage({ onChangePage }) {
     <FullContainer>
       {modalShow && <InfoToast closeModal={closeModal} />}
       <Typography
-        variant="h2"
+        variant={md ? "h2" : "h3"}
         component="h1"
         fontWeight="fontWeightBold"
         mb={6}

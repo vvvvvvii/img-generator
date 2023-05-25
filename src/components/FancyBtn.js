@@ -59,7 +59,9 @@ function FancyBtn({ children, ...rest }) {
       <FancyButtonStyle
         {...rest}
         onMouseEnter={playMusic}
+        onTouchStart={playMusic}
         onMouseLeave={stopMusic}
+        onTouchEnd={stopMusic}
       >
         {children}
       </FancyButtonStyle>
