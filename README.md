@@ -40,6 +40,12 @@
 - useRef ：定位 DOM
 - useCallback ：紀錄函式，讓 useEffect dependencies 正確依賴
 
+#### RWD
+
+- MUI 的 useTheme & useMediaQuery 直接在 MUI 元件行內寫 RWD 判斷
+- theme.breakpoints.up() 配合 MUI 元件 sx 設定 RWD style
+- 不是 MUI 元件時，引入 Radium ，直接以 @media(min-width: px) 撰寫
+
 #### 第三方套件 / 框架
 
 - [axios](https://www.npmjs.com/package/axios)：抓取 API

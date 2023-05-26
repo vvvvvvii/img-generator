@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import { styled } from "@mui/system";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -23,27 +25,76 @@ const ModalHeader = styled(Box)({
   justifyContent: "space-between",
   alignItems: "center",
   borderBottom: "1px solid #888",
-  padding: "1rem 1.5rem",
-  marginBottom: "1rem",
+  padding: ".5rem 1rem",
+  marginBottom: ".5rem",
+  "@media(min-width: 768px)": {
+    padding: "1rem 1.5rem",
+    marginBottom: "1rem",
+  },
 });
 const ModalBody = styled(Box)({
-  padding: "2rem 2.5rem",
+  padding: "1.5rem 2rem",
+  "@media(min-width: 768px)": {
+    padding: "2rem 2.5rem",
+  },
 });
-const FormGroupStyle = {
+const FormGroupStyle = (theme) => ({
+  marginBottom: "1rem",
+  [theme.breakpoints.up("md")]: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "2rem",
+  },
+});
+const InputStyle = (theme) => ({
+  width: "100%",
+  marginBottom: "1rem",
+  [theme.breakpoints.up("md")]: {
+    width: "40%",
+    marginBottom: 0,
+  },
+});
+const ColorGroupStyle = (theme) => ({
+  display: "flex",
+  justifyContent: "space-evenly",
+  alignItems: "center",
+  marginLeft: "0",
+  [theme.breakpoints.up("md")]: {
+    flexDirection: "column",
+    height: "5rem",
+    marginLeft: "1rem",
+  },
+});
+const OptionGroupStyle = (theme) => ({
   display: "flex",
   justifyContent: "center",
-  alignItems: "center",
-};
-const OptionStyle = {
-  padding: "1.5rem",
-  margin: "0 .25rem",
+  flexWrap: "wrap",
+  marginBottom: "1rem",
+  [theme.breakpoints.up("md")]: {
+    marginBottom: "3rem",
+  },
+});
+const OptionStyle = (theme) => ({
+  padding: "1rem 1.5rem ",
+  margin: ".5rem",
   borderRadius: "0.5rem",
   border: "1px solid #999",
   "&:hover": {
     cursor: "pointer",
     border: "1px solid #fa8080",
   },
-};
+  [theme.breakpoints.up("sm")]: {
+    padding: "1.5rem 2rem",
+    margin: ".5rem",
+  },
+  [theme.breakpoints.up("lg")]: {
+    padding: "1.25rem 1rem",
+  },
+  [theme.breakpoints.up("xl")]: {
+    padding: "1.5rem",
+  },
+});
 const SelectedStyle = {
   border: "1px solid #fa8080",
 };
@@ -55,6 +106,9 @@ const UnselectedStyle = {
 };
 
 function EditModal({ modalTxt, toggleModal, onSubmit }) {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.up("md"));
+
   const [id, setId] = useState(0);
   const [content, setContent] = useState("");
   const [mainColor, setMainColor] = useState("#ffe5e5");
@@ -163,7 +217,7 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
     <Modal disableAutoFocus open={true} onClose={closeModal}>
       <Box sx={ModalStyle}>
         <ModalHeader>
-          <Typography variant="h5" component="h3">
+          <Typography variant={md ? "h5" : "body1"} component="h3">
             編輯文字
           </Typography>
           <IconButton onClick={closeModal}>
@@ -171,15 +225,15 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
           </IconButton>
         </ModalHeader>
         <ModalBody>
-          <Box sx={FormGroupStyle} mb={4}>
+          <Box sx={FormGroupStyle}>
             <TextField
               placeholder="輸入文字"
               value={content}
-              style={{ width: "40%" }}
+              sx={InputStyle}
               onChange={handleTxtChange}
             />
-            <Box ml={3}>
-              <Box mb={1}>
+            <Box sx={ColorGroupStyle}>
+              <Box>
                 <label htmlFor="mainColor" className="label">
                   主色
                 </label>
@@ -205,7 +259,7 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
               </Box>
             </Box>
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center" }} mb={5}>
+          <Box sx={OptionGroupStyle}>
             {txtStyles.map((txtStyle, styleKey) => (
               <Box
                 sx={[
@@ -218,13 +272,15 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
                 onClick={() => handleStyleChange(txtStyle.name)}
               >
                 <Typography
-                  variant="h5"
+                  variant={md ? "h5" : "body1"}
                   component="p"
                   style={{ ...txtStyle.styleObj, marginBottom: ".5rem" }}
                 >
                   {content.slice(0, 3) || "早安～"}
                 </Typography>
-                {txtStyle.infoTxt}
+                <Typography variant={md ? "body1" : "body2"} component="p">
+                  {txtStyle.infoTxt}
+                </Typography>
               </Box>
             ))}
           </Box>

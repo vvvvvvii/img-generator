@@ -1,13 +1,20 @@
+import Box from "@mui/material/Box";
 import TxtCard from "./TxtCard";
 
-const TxtCardListStyle = {
+const TxtCardListStyle = (theme) => ({
   overflowY: "scroll",
-  height: "450px",
+  height: "300px",
   marginBottom: "1rem",
-};
+  [theme.breakpoints.up("md")]: {
+    height: "200px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    height: "450px",
+  },
+});
 function TxtCardList({ texts, toggleModal, onDelete }) {
   return (
-    <div style={TxtCardListStyle}>
+    <Box sx={TxtCardListStyle}>
       {texts.map((text) => (
         <TxtCard
           key={text.id}
@@ -16,7 +23,7 @@ function TxtCardList({ texts, toggleModal, onDelete }) {
           onDelete={onDelete}
         />
       ))}
-    </div>
+    </Box>
   );
 }
 

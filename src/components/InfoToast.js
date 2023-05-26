@@ -56,7 +56,7 @@ const VolumnIconStyle = (theme) => ({
   },
 });
 
-function SimpleModal({ closeModal }) {
+function InfoToast({ closeModal }) {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -83,4 +83,4 @@ function SimpleModal({ closeModal }) {
   );
 }
 
-export default SimpleModal;
+export default InfoToast;

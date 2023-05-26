@@ -65,12 +65,8 @@ function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
     <div>
       <InnerPageContainer>
         <StageTitle title={"第二步："} subtitle={"添加文字"} />
-        <Grid
-          container
-          className="row edit-section-container"
-          sx={{ height: "600px" }}
-        >
-          <Grid item xs={6}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
             <WorkSpace
               selectedImageUrl={selectedImageUrl}
               texts={texts}
@@ -79,7 +75,8 @@ function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
           </Grid>
           <Grid
             item
-            xs={6}
+            xs={12}
+            md={6}
             sx={{
               display: "flex",
               flexDirection: "column",
@@ -92,7 +89,7 @@ function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
               color="default"
               size="large"
               onClick={() => toggleModal(true)}
-              className="btn btn-sm btn-light text-gray"
+              sx={{ marginBottom: "1rem" }}
             >
               新增
             </BrickBtn>
