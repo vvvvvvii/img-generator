@@ -1,4 +1,4 @@
-import "./all.css";
+import "./css/all.css";
 import { StyleRoot } from "radium";
 import theme from "./styles/theme";
 import { ThemeProvider } from "@mui/material/styles";

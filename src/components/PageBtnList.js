@@ -1,4 +1,12 @@
+import Box from "@mui/material/Box";
 import BrickBtn from "./BrickBtn";
+
+const PageBtnListStyle = (theme) => ({
+  textAlign: "center",
+  [theme.breakpoints.up("md")]: {
+    textAlign: "start",
+  },
+});
 
 function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
   const pageList = ["HomePage", "StepOne", "StepTwo", "ResultPage"];
@@ -15,7 +23,7 @@ function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
   };
 
   return (
-    <div className="d-flex">
+    <Box sx={PageBtnListStyle}>
       <BrickBtn
         type="button"
         variant="outlined"
@@ -37,7 +45,7 @@ function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
           下一步
         </BrickBtn>
       )}
-    </div>
+    </Box>
   );
 }
 

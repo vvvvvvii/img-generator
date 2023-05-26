@@ -1,9 +1,14 @@
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import Box from "@mui/material/Box";
 import Icon from "@mui/material/Icon";
 import Typography from "@mui/material/Typography";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 
 function ErrorMsg() {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <Box color="white" py={5}>
       <Typography
@@ -17,7 +22,11 @@ function ErrorMsg() {
           <ErrorOutlineOutlinedIcon />
         </Icon>
       </Typography>
-      <Typography variant="h6" component="p" align="center">
+      <Typography
+        variant={md ? "subtitle1" : "subtitle2"}
+        component="p"
+        align="center"
+      >
         要不要換一個搜尋詞或使用英文呢？
       </Typography>
     </Box>

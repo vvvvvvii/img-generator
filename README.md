@@ -12,6 +12,7 @@
 
 - 搜尋後吐出相關圖片供選擇
 - 若使用中文搜尋，自動翻譯為英文送出，以增加搜尋準確度
+- 根據裝置大小顯示不同輪播效果
 - 選擇圖片後才可進到下一頁
 
 #### 第二步
@@ -49,7 +50,7 @@
 - [Material Icons](https://mui.com/material-ui/material-icons/)：Icons
 - [Radium](https://www.npmjs.com/package/radium)：在 inline-style 撰寫 hover / media queries
 - [React-Draggable](https://www.npmjs.com/package/react-draggable)：拖曳方塊
-- [React Lazy Load Image Component](https://www.npmjs.com/package/react-lazy-load-image-component)：圖片延遲顯示效果
+- [Swiper](https://swiperjs.com/react)：圖片輪播效果
 
 ## 音效版權標示：
 

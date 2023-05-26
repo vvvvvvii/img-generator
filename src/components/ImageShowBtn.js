@@ -1,35 +1,55 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import Button from "@mui/material/Button";
+import Radium from "radium";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
+import Box from "@mui/material/Box";
 
-const imageStyle = {
-  width: "300px",
-  height: "300px",
+const ImgStyle = {
+  width: "220px",
+  height: "220px",
   objectFit: "cover",
   boxSizing: "border-box",
+  "@media(min-width:576px)": {
+    width: "200px",
+    height: "200px",
+  },
+  "@media(min-width:768px)": {
+    width: "150px",
+    height: "150px",
+  },
+  "@media(min-width:992px)": {
+    width: "200px",
+    height: "200px",
+  },
+  "@media(min-width:1200px)": {
+    width: "280px",
+    height: "280px",
+  },
 };
-const selectedImageStyle = {
+const SelectedImgStyle = {
   border: "5px solid #fa8080",
 };
 
 function ImageShowBtn({ image, onChangeBackgroundUrl, selectedImageUrl }) {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.up("md"));
+
   const handleClick = (url) => {
     onChangeBackgroundUrl(url);
   };
 
   return (
-    <Button type="button" mb={6} onClick={() => handleClick(image.urls.full)}>
-      <LazyLoadImage
+    <Box mb={md ? 6 : 2} onClick={() => handleClick(image.urls.full)}>
+      <img
         alt={image.alt_description}
         src={image.urls.small}
-        style={
-          selectedImageUrl === image.urls.full
-            ? { ...imageStyle, ...selectedImageStyle }
-            : imageStyle
-        }
+        style={[
+          ImgStyle,
+          selectedImageUrl === image.urls.full ? SelectedImgStyle : null,
+        ]}
         effect="blur"
       />
-    </Button>
+    </Box>
   );
 }
 
-export default ImageShowBtn;
+export default Radium(ImageShowBtn);

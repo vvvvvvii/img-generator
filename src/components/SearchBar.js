@@ -1,5 +1,7 @@
 import { translateText } from "../api";
 import { useState, useEffect, useCallback } from "react";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -17,6 +19,8 @@ const searchbarLabelStyle = {
 };
 
 function SearchBar({ setSearchTerm }) {
+  const theme = useTheme();
+  const md = useMediaQuery(theme.breakpoints.up("md"));
   const [searchTxt, setSearchTxt] = useState("蓮花");
 
   const handleSubmit = useCallback(
@@ -40,7 +44,7 @@ function SearchBar({ setSearchTerm }) {
 
   return (
     <Box component="form" autoComplete="off" mb={3} onSubmit={handleSubmit}>
-      <FormControl>
+      <FormControl fullWidth={!md}>
         <InputLabel htmlFor="component-outlined" style={searchbarLabelStyle}>
           輸入關鍵字
         </InputLabel>
@@ -49,6 +53,7 @@ function SearchBar({ setSearchTerm }) {
           value={searchTxt}
           color="secondary"
           style={searchbarStyle}
+          fullWidth={!md}
           onChange={handleChange}
           endAdornment={
             <InputAdornment position="end">
