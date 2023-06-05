@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HomePage from "./page/HomePage";
 import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
 import ResultPage from "./page/ResultPage";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 const wrapperStyle = {
   background: "#000",
@@ -13,13 +13,6 @@ const wrapperStyle = {
 function App() {
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [imageResult, setImageResult] = useState("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (imageResult) {
-      navigate("/resultPage");
-    }
-  }, [imageResult, navigate]);
 
   const onChangeBackgroundUrl = (url) => {
     setSelectedImageUrl(url);

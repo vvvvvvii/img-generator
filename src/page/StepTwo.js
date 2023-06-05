@@ -1,5 +1,6 @@
 import { toJpeg } from "html-to-image";
 import { useState, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import BrickBtn from "../components/BrickBtn";
@@ -19,6 +20,7 @@ function StepTwo({ selectedImageUrl, setImageResult }) {
   const [modalTxt, setModalTxt] = useState({});
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
   const workSpaceRef = useRef();
 
   const toggleModal = (showModalBoolean, modalText) => {
@@ -64,11 +66,12 @@ function StepTwo({ selectedImageUrl, setImageResult }) {
       .then(async (dataUrl) => {
         const url = await dataUrl;
         setImageResult(url);
+        navigate("/resultPage");
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [workSpaceRef, setImageResult]);
+  }, [workSpaceRef, setImageResult, navigate]);
 
   return (
     <div>
