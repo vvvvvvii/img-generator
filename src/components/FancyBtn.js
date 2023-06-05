@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/system";
 import sound from "../assets/sound.mp3";
 import Box from "@mui/material/Box";
@@ -66,21 +67,17 @@ const FancyTransitionStyle = styled(Box)({
 
 const audio = new Audio(sound);
 
-function FancyBtn({ children, onChangePage, ...rest }) {
+function FancyBtn({ children, ...rest }) {
   const [runTransition, setRunTransition] = useState(false);
-
-  const handleChangePage = useCallback(
-    (page) => onChangePage(page),
-    [onChangePage]
-  );
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (runTransition) {
       setTimeout(() => {
-        handleChangePage("StepOne");
+        navigate("/stepOne");
       }, 2000);
     }
-  }, [runTransition, handleChangePage]);
+  }, [runTransition, navigate]);
 
   useEffect(() => {
     return () => {

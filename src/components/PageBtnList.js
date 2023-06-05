@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import BrickBtn from "./BrickBtn";
 
@@ -8,8 +9,10 @@ const PageBtnListStyle = (theme) => ({
   },
 });
 
-function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
-  const pageList = ["HomePage", "StepOne", "StepTwo", "ResultPage"];
+function PageBtnList({ showNextBtn }) {
+  const pageList = ["/", "/stepOne", "/stepTwo", "/resultPage"];
+  const nowPage = useLocation().pathname;
+  const navigate = useNavigate();
 
   const handlePageChange = (action) => {
     const nowPageIndex = pageList.findIndex((page) => page === nowPage);
@@ -19,7 +22,7 @@ function PageBtnList({ nowPage, showNextBtn, onChangePage }) {
     } else {
       targetPage = pageList[nowPageIndex + 1];
     }
-    onChangePage(targetPage);
+    navigate(targetPage);
   };
 
   return (

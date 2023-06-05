@@ -7,6 +7,7 @@
 #### 首頁
 
 - 按鈕 hover 時變顏色和大小，並播放音效
+- 按鈕按下後有簡單轉場動畫
 
 #### 第一步
 
@@ -56,6 +57,7 @@
 - [Material Icons](https://mui.com/material-ui/material-icons/)：Icons
 - [Radium](https://www.npmjs.com/package/radium)：在 inline-style 撰寫 hover / media queries
 - [React-Draggable](https://www.npmjs.com/package/react-draggable)：拖曳方塊
+- [React-Router-DOM](https://www.npmjs.com/package/react-router-dom)：路由設定
 - [Swiper](https://swiperjs.com/react)：圖片輪播效果
 
 ## 音效版權標示：

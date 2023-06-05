@@ -1,4 +1,5 @@
 import { useCallback, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { toJpeg, toPng } from "html-to-image";
 import download from "downloadjs";
 import Radium from "radium";
@@ -21,8 +22,9 @@ const ResultImgStyle = {
   },
 };
 
-function ResultPage({ imageResult, onChangePage }) {
+function ResultPage({ imageResult }) {
   const downloadImgRef = useRef();
+  const navigate = useNavigate();
 
   const downloadImg = useCallback((fileType) => {
     if (downloadImgRef.current === null) {
@@ -84,7 +86,7 @@ function ResultPage({ imageResult, onChangePage }) {
           color="default"
           variant="contained"
           sx={{ marginLeft: "0.75rem" }}
-          onClick={() => onChangePage("HomePage")}
+          onClick={() => navigate("/")}
         >
           再做一張
         </BrickBtn>

@@ -10,7 +10,7 @@ import StageTitle from "../components/StageTitle";
 import TxtCardList from "../components/TxtCardList";
 import WorkSpace from "../components/WorkSpace";
 
-function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
+function StepTwo({ selectedImageUrl, setImageResult }) {
   const [texts, setTexts] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [modalTxt, setModalTxt] = useState({});
@@ -99,11 +99,7 @@ function StepTwo({ selectedImageUrl, onChangePage, setImageResult, nowPage }) {
               onDelete={onDelete}
             />
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <PageBtnList
-                nowPage={nowPage}
-                showNextBtn={false}
-                onChangePage={onChangePage}
-              />
+              <PageBtnList showNextBtn={false} />
               <BrickBtn
                 type="button"
                 variant="contained"

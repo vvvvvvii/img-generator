@@ -3,6 +3,7 @@ import HomePage from "./page/HomePage";
 import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
 import ResultPage from "./page/ResultPage";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 const wrapperStyle = {
   background: "#000",
@@ -10,46 +11,48 @@ const wrapperStyle = {
 };
 
 function App() {
-  const [nowPage, setNowPage] = useState("HomePage");
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [imageResult, setImageResult] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (imageResult) {
-      onChangePage("ResultPage");
+      navigate("/resultPage");
     }
-  }, [imageResult]);
+  }, [imageResult, navigate]);
 
-  const onChangePage = (pageName) => {
-    setNowPage(pageName);
-  };
   const onChangeBackgroundUrl = (url) => {
     setSelectedImageUrl(url);
   };
 
   return (
     <div style={wrapperStyle}>
-      {nowPage === "HomePage" && <HomePage onChangePage={onChangePage} />}
-      {nowPage === "StepOne" && (
-        <StepOne
-          onChangeBackgroundUrl={onChangeBackgroundUrl}
-          selectedImageUrl={selectedImageUrl}
-          onChangePage={onChangePage}
-          nowPage={nowPage}
-        />
-      )}
-      {nowPage === "StepTwo" && (
-        <StepTwo
-          onChangePage={onChangePage}
-          selectedImageUrl={selectedImageUrl}
-          imageResult={imageResult}
-          setImageResult={setImageResult}
-          nowPage={nowPage}
-        />
-      )}
-      {nowPage === "ResultPage" && (
-        <ResultPage onChangePage={onChangePage} imageResult={imageResult} />
-      )}
+      <Routes>
+        <Route element={<HomePage />} path={"/"}></Route>
+        <Route
+          element={
+            <StepOne
+              onChangeBackgroundUrl={onChangeBackgroundUrl}
+              selectedImageUrl={selectedImageUrl}
+            />
+          }
+          path={"/stepOne"}
+        ></Route>
+        <Route
+          element={
+            <StepTwo
+              selectedImageUrl={selectedImageUrl}
+              imageResult={imageResult}
+              setImageResult={setImageResult}
+            />
+          }
+          path={"/stepTwo"}
+        ></Route>
+        <Route
+          element={<ResultPage imageResult={imageResult} />}
+          path={"/resultPage"}
+        ></Route>
+      </Routes>
     </div>
   );
 }

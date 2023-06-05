@@ -8,12 +8,7 @@ import ErrorMsg from "../components/ErrorMsg";
 import ImageList from "../components/ImageList";
 import PageBtnList from "../components/PageBtnList";
 
-function StepOne({
-  onChangeBackgroundUrl,
-  selectedImageUrl,
-  onChangePage,
-  nowPage,
-}) {
+function StepOne({ onChangeBackgroundUrl, selectedImageUrl }) {
   const [images, setImages] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -40,11 +35,7 @@ function StepOne({
           <ErrorMsg />
         )}
       </Box>
-      <PageBtnList
-        nowPage={nowPage}
-        showNextBtn={selectedImageUrl}
-        onChangePage={onChangePage}
-      />
+      <PageBtnList showNextBtn={selectedImageUrl} />
     </InnerPageContainer>
   );
 }

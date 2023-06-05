@@ -10,7 +10,7 @@ const welcomeTitleStyle = {
   color: "#d4ce41",
   textShadow: "3px 3px #fa8080, 5px 4px #888",
 };
-function HomePage({ onChangePage }) {
+function HomePage() {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
   const [modalShow, setModalShow] = useState(true);
@@ -31,7 +31,7 @@ function HomePage({ onChangePage }) {
       >
         長輩圖生成器
       </Typography>
-      <FancyBtn size="large" title="點擊開始" onChangePage={onChangePage}>
+      <FancyBtn size="large" title="點擊開始">
         點擊進入
       </FancyBtn>
     </FullContainer>
