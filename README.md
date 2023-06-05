@@ -68,3 +68,10 @@
 - 無變更原始版本
 - [原始連結](https://orangefreesounds.com/funny-synth-voice-oohs-loop/)
 - [Creative-Commons-Attribution-4.0-International-License] (https://creativecommons.org/licenses/by/4.0/deed.zh_TW)
+
+#### Mouse Click Sound
+
+- Artist: Alexander
+- 無變更原始版本
+- [原始連結](https://orangefreesounds.com/mouse-click-sound/)
+- [Creative-Commons-Attribution-4.0-International-License] (https://creativecommons.org/licenses/by/4.0/deed.zh_TW)

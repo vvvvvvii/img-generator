@@ -9,11 +9,15 @@ import PageBtnList from "../components/PageBtnList";
 import StageTitle from "../components/StageTitle";
 import TxtCardList from "../components/TxtCardList";
 import WorkSpace from "../components/WorkSpace";
+import clickSound from "../assets/clickSound.mp3";
+
+const audio = new Audio(clickSound);
 
 function StepTwo({ selectedImageUrl, setImageResult }) {
   const [texts, setTexts] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [modalTxt, setModalTxt] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const workSpaceRef = useRef();
 
@@ -46,11 +50,16 @@ function StepTwo({ selectedImageUrl, setImageResult }) {
     const updateTexts = texts.filter((text) => text.id !== id);
     setTexts(updateTexts);
   };
+  const playMusic = () => {
+    audio.play();
+  };
 
   const generateImgData = useCallback(() => {
     if (workSpaceRef.current === null) {
       return;
     }
+    playMusic();
+    setLoading(true);
     toJpeg(workSpaceRef.current, { cacheBust: true })
       .then(async (dataUrl) => {
         const url = await dataUrl;
@@ -104,11 +113,12 @@ function StepTwo({ selectedImageUrl, setImageResult }) {
                 type="button"
                 variant="contained"
                 color="secondary"
+                disabled={loading}
                 size="large"
                 onClick={generateImgData}
                 className="btn btn-sm w-50 btn-light text-gray"
               >
-                生成圖片
+                {loading ? "生成中..." : "生成圖片"}
               </BrickBtn>
             </Box>
           </Grid>

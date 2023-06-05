@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/system";
-import sound from "../assets/sound.mp3";
+import fancyBtnSound from "../assets/fancyBtnSound.mp3";
 import Box from "@mui/material/Box";
 import BrickBtn from "./BrickBtn";
 
@@ -65,7 +65,7 @@ const FancyTransitionStyle = styled(Box)({
   },
 });
 
-const audio = new Audio(sound);
+const audio = new Audio(fancyBtnSound);
 
 function FancyBtn({ children, ...rest }) {
   const [runTransition, setRunTransition] = useState(false);
@@ -74,16 +74,12 @@ function FancyBtn({ children, ...rest }) {
   useEffect(() => {
     if (runTransition) {
       setTimeout(() => {
+        audio.pause();
         navigate("/stepOne");
       }, 2000);
     }
   }, [runTransition, navigate]);
 
-  useEffect(() => {
-    return () => {
-      stopMusic();
-    };
-  }, []);
   const playMusic = () => {
     audio.play();
     // loop play
@@ -92,7 +88,9 @@ function FancyBtn({ children, ...rest }) {
     });
   };
   const stopMusic = () => {
-    audio.pause();
+    if (!runTransition) {
+      audio.pause();
+    }
   };
   const runAnimation = () => {
     setRunTransition(true);

@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import BrickBtn from "./BrickBtn";
+import clickSound from "../assets/clickSound.mp3";
 
 const PageBtnListStyle = (theme) => ({
   textAlign: "center",
@@ -9,12 +10,15 @@ const PageBtnListStyle = (theme) => ({
   },
 });
 
+const audio = new Audio(clickSound);
+
 function PageBtnList({ showNextBtn }) {
   const pageList = ["/", "/stepOne", "/stepTwo", "/resultPage"];
   const nowPage = useLocation().pathname;
   const navigate = useNavigate();
 
   const handlePageChange = (action) => {
+    playMusic();
     const nowPageIndex = pageList.findIndex((page) => page === nowPage);
     let targetPage = "";
     if (action === "goPrev") {
@@ -23,6 +27,9 @@ function PageBtnList({ showNextBtn }) {
       targetPage = pageList[nowPageIndex + 1];
     }
     navigate(targetPage);
+  };
+  const playMusic = () => {
+    audio.play();
   };
 
   return (

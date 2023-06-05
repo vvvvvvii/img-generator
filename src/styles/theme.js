@@ -30,6 +30,11 @@ const theme = createTheme({
           "@media(min-width:576px)": {
             padding: "8px 22px",
           },
+          "&.Mui-disabled": {
+            pointerEvents: "unset", // allow :hover styles to be triggered
+            cursor: "not-allowed", // and custom cursor can be defined without :hover state
+            backgroundColor: "#888",
+          },
         }),
       },
     },
