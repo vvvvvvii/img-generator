@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { styled } from "@mui/system";
 import sound from "../assets/sound.mp3";
+import Box from "@mui/material/Box";
 import BrickBtn from "./BrickBtn";
 
 const FancyButtonStyle = styled(BrickBtn)({
@@ -29,15 +30,58 @@ const FancyButtonStyle = styled(BrickBtn)({
   },
   "@keyframes zoom": {
     to: {
-      width: "100px",
+      width: "125px",
       height: "50px",
+    },
+  },
+});
+const FancyTransitionOuterStyle = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  overflow: "hidden",
+};
+const FancyTransitionStyle = styled(Box)({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  zIndex: 2,
+  transform: "translate(-50%, -50%)",
+  borderRadius: "50%",
+  animation: "fancyTransition 2s",
+  "@keyframes fancyTransition": {
+    "0%": { width: "0vw", height: "0vw", background: "#1adcf2" },
+    "90%": {
+      background: "#d959f6",
+    },
+    "100%": {
+      width: "150vw",
+      height: "150vw",
+      background: "#222",
     },
   },
 });
 
 const audio = new Audio(sound);
 
-function FancyBtn({ children, ...rest }) {
+function FancyBtn({ children, onChangePage, ...rest }) {
+  const [runTransition, setRunTransition] = useState(false);
+
+  const handleChangePage = useCallback(
+    (page) => onChangePage(page),
+    [onChangePage]
+  );
+
+  useEffect(() => {
+    if (runTransition) {
+      setTimeout(() => {
+        handleChangePage("StepOne");
+      }, 2000);
+    }
+  }, [runTransition, handleChangePage]);
+
   useEffect(() => {
     return () => {
       stopMusic();
@@ -53,6 +97,9 @@ function FancyBtn({ children, ...rest }) {
   const stopMusic = () => {
     audio.pause();
   };
+  const runAnimation = () => {
+    setRunTransition(true);
+  };
 
   return (
     <div>
@@ -62,9 +109,15 @@ function FancyBtn({ children, ...rest }) {
         onTouchStart={playMusic}
         onMouseLeave={stopMusic}
         onTouchEnd={stopMusic}
+        onClick={() => runAnimation()}
       >
         {children}
       </FancyButtonStyle>
+      {runTransition && (
+        <div style={FancyTransitionOuterStyle}>
+          <FancyTransitionStyle />
+        </div>
+      )}
     </div>
   );
 }
