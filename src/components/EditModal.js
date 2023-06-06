@@ -89,7 +89,6 @@ const OptionStyle = (theme) => ({
   border: "1px solid #999",
   "&:hover": {
     cursor: "pointer",
-    border: "1px solid #fa8080",
   },
   [theme.breakpoints.up("sm")]: {
     padding: "1.5rem 2rem",
@@ -123,13 +122,6 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
   const [subColor, setSubColor] = useState("#ff2929");
   const [selectedStyle, setSelectedStyle] = useState("default");
   const txtStyles = [
-    {
-      name: "default",
-      infoTxt: "預設",
-      styleObj: {
-        color: mainColor,
-      },
-    },
     {
       name: "styleOption1",
       infoTxt: "邊框",
@@ -215,15 +207,27 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
     }
   };
   const handleStyleChange = (styleName) => {
-    setSelectedStyle(styleName);
+    if (styleName === selectedStyle) {
+      setSelectedStyle("default");
+    } else {
+      setSelectedStyle(styleName);
+    }
   };
   const uniqueID = () => {
     return Math.floor(Math.random() * Date.now());
   };
   const handleSubmit = () => {
-    const styles = txtStyles.filter(
+    let styles;
+    const selectedTxtStyle = txtStyles.filter(
       (txtStyle) => txtStyle.name === selectedStyle
-    )[0].styleObj;
+    )[0];
+    if (selectedTxtStyle) {
+      styles = selectedTxtStyle.styleObj;
+    } else {
+      styles = {
+        color: mainColor,
+      };
+    }
     const newTxt = {
       id,
       content,
