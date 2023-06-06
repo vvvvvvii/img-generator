@@ -167,6 +167,15 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
         textShadow: `-1px -1px 2px ${subColor}, 1px 0px 1px ${subColor}, 0px 1px 2px #888`,
       },
     },
+    {
+      name: "styleOption6",
+      infoTxt: "直書",
+      styleObj: {
+        color: mainColor,
+        webkitWritingMode: "vertical-rl",
+        writingMode: "vertical-rl",
+      },
+    },
   ];
 
   useEffect(() => {

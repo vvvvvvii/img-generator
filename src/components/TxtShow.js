@@ -21,9 +21,15 @@ function TxtShow({ text, toggleModal, workSpaceRef }) {
     setBoundingY(y + borderWidth);
   }, [workSpaceRef]);
   useEffect(() => {
-    const updateFontSize = width > height ? width / 5 : height / 4;
+    let updateFontSize;
+    if (text.selectedStyle === "styleOption6") {
+      // 樣式選直書時
+      updateFontSize = width > height ? width / 3 : height / 2;
+    } else {
+      updateFontSize = width > height ? width / 5 : height / 4;
+    }
     setFontSize(updateFontSize);
-  }, [width, height]);
+  }, [text, width, height]);
 
   const onStopDrag = (x, y) => {
     setDefaultX(x - boundingX);

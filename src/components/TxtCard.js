@@ -27,7 +27,6 @@ function TxtCard({ text, toggleModal, onDelete }) {
     },
   });
   const CardTextStyle = (theme) => ({
-    ...text.styles,
     wordBreak: "break-all",
     overflow: "hidden",
     whiteSpace: "nowrap",
