@@ -64,6 +64,13 @@ const ColorGroupStyle = (theme) => ({
     flexDirection: "column",
     height: "5rem",
     marginLeft: "1rem",
+    marginBottom: 0,
+  },
+});
+const FontSizeStyle = (theme) => ({
+  marginBottom: "1rem",
+  [theme.breakpoints.up("md")]: {
+    display: "none",
   },
 });
 const OptionGroupStyle = (theme) => ({
@@ -111,6 +118,7 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
 
   const [id, setId] = useState(0);
   const [content, setContent] = useState("");
+  const [fontSize, setFontSize] = useState(16);
   const [mainColor, setMainColor] = useState("#ffe5e5");
   const [subColor, setSubColor] = useState("#ff2929");
   const [selectedStyle, setSelectedStyle] = useState("default");
@@ -172,16 +180,19 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
       infoTxt: "直書",
       styleObj: {
         color: mainColor,
-        webkitWritingMode: "vertical-rl",
+        WebkitWritingMode: "vertical-rl",
         writingMode: "vertical-rl",
       },
     },
   ];
+  const fontSizeOptions = [12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 72];
 
   useEffect(() => {
-    const { id, content, mainColor, subColor, selectedStyle } = modalTxt;
+    const { id, content, fontSize, mainColor, subColor, selectedStyle } =
+      modalTxt;
     setId(id || uniqueID());
     setContent(content || "");
+    setFontSize(fontSize || 16);
     setMainColor(mainColor || "#ffe5e5");
     setSubColor(subColor || "#ff2929");
     setSelectedStyle(selectedStyle || "default");
@@ -192,6 +203,9 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
   };
   const handleTxtChange = (e) => {
     setContent(e.target.value);
+  };
+  const handleFontSizeChange = (e) => {
+    setFontSize(e.target.value);
   };
   const handleColorChange = (e, type) => {
     if (type === "main") {
@@ -213,6 +227,7 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
     const newTxt = {
       id,
       content,
+      fontSize,
       mainColor,
       subColor,
       styles,
@@ -241,6 +256,24 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
               sx={InputStyle}
               onChange={handleTxtChange}
             />
+            <Box sx={FontSizeStyle}>
+              <TextField
+                select
+                label="字體大小"
+                value={fontSize}
+                fullWidth
+                SelectProps={{
+                  native: true,
+                }}
+                onChange={handleFontSizeChange}
+              >
+                {fontSizeOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}px
+                  </option>
+                ))}
+              </TextField>
+            </Box>
             <Box sx={ColorGroupStyle}>
               <Box>
                 <label htmlFor="mainColor" className="label">

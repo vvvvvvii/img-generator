@@ -13,6 +13,11 @@ function TxtShow({ text, toggleModal, workSpaceRef }) {
   const [boundingY, setBoundingY] = useState(0);
 
   useEffect(() => {
+    if (text.fontSize) {
+      setFontSize(text.fontSize);
+    }
+  }, [text]);
+  useEffect(() => {
     // 取得 workSpaceRef 和整個網站的空隙
     const parentBounding = workSpaceRef.current.getBoundingClientRect();
     const { x, y } = parentBounding;
@@ -21,14 +26,18 @@ function TxtShow({ text, toggleModal, workSpaceRef }) {
     setBoundingY(y + borderWidth);
   }, [workSpaceRef]);
   useEffect(() => {
-    let updateFontSize;
-    if (text.selectedStyle === "styleOption6") {
-      // 樣式選直書時
-      updateFontSize = width > height ? width / 3 : height / 2;
+    if (text.fontSize) {
+      setFontSize(text.fontSize);
     } else {
-      updateFontSize = width > height ? width / 5 : height / 4;
+      let updateFontSize;
+      if (text.selectedStyle === "styleOption6") {
+        // 樣式選直書時
+        updateFontSize = width > height ? width / 3 : height / 2;
+      } else {
+        updateFontSize = width > height ? width / 5 : height / 4;
+      }
+      setFontSize(updateFontSize);
     }
-    setFontSize(updateFontSize);
   }, [text, width, height]);
 
   const onStopDrag = (x, y) => {
