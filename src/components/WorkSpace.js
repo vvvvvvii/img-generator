@@ -22,7 +22,7 @@ const WorkSpaceStyle = (theme) => ({
   },
 });
 
-function WorkSpace({ selectedImageUrl, texts, workSpaceRef }) {
+function WorkSpace({ selectedImageUrl, texts, toggleModal, workSpaceRef }) {
   return (
     <Box
       style={{ backgroundImage: `url(${selectedImageUrl})` }}
@@ -30,7 +30,12 @@ function WorkSpace({ selectedImageUrl, texts, workSpaceRef }) {
       ref={workSpaceRef}
     >
       {texts.map((text) => (
-        <TxtShow key={text.id} text={text} workSpaceRef={workSpaceRef} />
+        <TxtShow
+          key={text.id}
+          text={text}
+          toggleModal={toggleModal}
+          workSpaceRef={workSpaceRef}
+        />
       ))}
     </Box>
   );

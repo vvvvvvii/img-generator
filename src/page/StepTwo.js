@@ -82,6 +82,7 @@ function StepTwo({ selectedImageUrl, setImageResult }) {
             <WorkSpace
               selectedImageUrl={selectedImageUrl}
               texts={texts}
+              toggleModal={toggleModal}
               workSpaceRef={workSpaceRef}
             />
           </Grid>

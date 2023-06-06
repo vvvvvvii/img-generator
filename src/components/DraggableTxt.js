@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { styled } from "@mui/system";
 import Draggable from "react-draggable";
 import Typography from "@mui/material/Typography";
@@ -40,7 +41,9 @@ function DraggableText({
   height,
   onStopDrag,
   modeChange,
+  toggleModal,
 }) {
+  const [isDoubleTap, setIsDoubleTap] = useState(false);
   const onStop = (target) => {
     let { x, y } = target.getBoundingClientRect();
     onStopDrag(x, y);
@@ -49,6 +52,14 @@ function DraggableText({
     onStop(e.target.parentNode);
     modeChange("resize");
   };
+  const doubleTap = (text) => {
+    if (!isDoubleTap) {
+      setIsDoubleTap(true);
+    } else {
+      toggleModal(true, text);
+      setIsDoubleTap(false);
+    }
+  };
 
   return (
     <Draggable
@@ -56,7 +67,11 @@ function DraggableText({
       bounds="parent"
       onStop={(e) => onStop(e.target)}
     >
-      <TxtStyle style={{ width: `${width}px`, height: `${height}px` }}>
+      <TxtStyle
+        style={{ width: `${width}px`, height: `${height}px` }}
+        onDoubleClick={() => toggleModal(true, text)}
+        onTouchStart={() => doubleTap(text)}
+      >
         <Typography
           style={{
             ...text.styles,

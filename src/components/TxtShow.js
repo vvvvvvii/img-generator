@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import DraggableText from "./DraggableTxt";
 import ResizeText from "./ResizeTxt";
 
-function TxtShow({ text, workSpaceRef }) {
+function TxtShow({ text, toggleModal, workSpaceRef }) {
   const [mode, setMode] = useState("drag");
   const [width, setWidth] = useState(100);
   const [height, setHeight] = useState(40);
@@ -45,6 +45,7 @@ function TxtShow({ text, workSpaceRef }) {
           height={height}
           onStopDrag={onStopDrag}
           modeChange={modeChange}
+          toggleModal={toggleModal}
         />
       ) : (
         <ResizeText
