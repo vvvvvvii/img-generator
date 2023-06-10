@@ -3,24 +3,36 @@ import { useNavigate } from "react-router-dom";
 import { toJpeg, toPng } from "html-to-image";
 import download from "downloadjs";
 import Radium from "radium";
+import Box from "@mui/material/Box";
 import BrickBtn from "../components/BrickBtn";
 import FullContainer from "../components/FullContainer";
 import StageTitle from "../components/StageTitle";
 
-const ResultImgStyle = {
-  width: "250px",
-  height: "250px",
-  marginBottom: "3rem",
-  "@media(min-width:576px)": {
-    width: "300px",
-    height: "300px",
-    marginBottom: "1.5rem",
-  },
-  "@media(min-width:768px)": {
+const ResultImgStyle = (theme) => ({
+  width: "300px",
+  height: "300px",
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  overflow: "hidden",
+  [theme.breakpoints.up("sm")]: {
     width: "400px",
-    height: "400px",
+    height: "350px",
+    margin: "0 auto",
   },
-};
+  [theme.breakpoints.up("md")]: {
+    width: "300px",
+    height: "450px",
+  },
+  [theme.breakpoints.up("lg")]: {
+    width: "400px",
+    height: "600px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    width: "500px",
+    height: "600px",
+  },
+});
 
 function ResultPage({ imageResult }) {
   const downloadImgRef = useRef();
@@ -56,10 +68,9 @@ function ResultPage({ imageResult }) {
     <FullContainer>
       <StageTitle title={"完成！"} mb={5}></StageTitle>
       {imageResult && (
-        <img
-          src={imageResult}
-          style={ResultImgStyle}
-          alt="成品圖片"
+        <Box
+          style={{ backgroundImage: `url(${imageResult})` }}
+          sx={ResultImgStyle}
           ref={downloadImgRef}
         />
       )}

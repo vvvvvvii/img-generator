@@ -3,21 +3,27 @@ import Box from "@mui/material/Box";
 
 const WorkSpaceStyle = (theme) => ({
   position: "relative",
-  width: "100%",
+  width: "300px",
   height: "300px",
   backgroundPosition: "center",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   overflow: "hidden",
   [theme.breakpoints.up("sm")]: {
-    width: "80%",
-    height: "400px",
+    width: "400px",
+    height: "350px",
     margin: "0 auto",
   },
   [theme.breakpoints.up("md")]: {
-    width: "100%",
+    width: "300px",
+    height: "450px",
   },
   [theme.breakpoints.up("lg")]: {
+    width: "400px",
+    height: "600px",
+  },
+  [theme.breakpoints.up("xl")]: {
+    width: "500px",
     height: "600px",
   },
 });
