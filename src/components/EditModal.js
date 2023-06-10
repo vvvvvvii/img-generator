@@ -44,6 +44,8 @@ const FormGroupStyle = (theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+  [theme.breakpoints.up("lg")]: {
     marginBottom: "2rem",
   },
 });
@@ -70,6 +72,10 @@ const ColorGroupStyle = (theme) => ({
 const FontSizeStyle = (theme) => ({
   marginBottom: "1rem",
   [theme.breakpoints.up("md")]: {
+    marginBottom: 0,
+    marginLeft: "0.5rem",
+  },
+  [theme.breakpoints.up("lg")]: {
     display: "none",
   },
 });
@@ -78,7 +84,13 @@ const OptionGroupStyle = (theme) => ({
   justifyContent: "center",
   flexWrap: "wrap",
   marginBottom: "1rem",
+  overflowY: "scroll",
+  height: "150px",
+  [theme.breakpoints.up("sm")]: {
+    height: "250px",
+  },
   [theme.breakpoints.up("md")]: {
+    height: "auto",
     marginBottom: "3rem",
   },
 });
@@ -87,6 +99,9 @@ const OptionStyle = (theme) => ({
   margin: ".5rem",
   borderRadius: "0.5rem",
   border: "1px solid #999",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
   "&:hover": {
     cursor: "pointer",
   },

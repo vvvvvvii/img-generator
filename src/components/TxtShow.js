@@ -13,11 +13,6 @@ function TxtShow({ text, toggleModal, workSpaceRef }) {
   const [boundingY, setBoundingY] = useState(0);
 
   useEffect(() => {
-    if (text.fontSize) {
-      setFontSize(text.fontSize);
-    }
-  }, [text]);
-  useEffect(() => {
     // 取得 workSpaceRef 和整個網站的空隙
     const parentBounding = workSpaceRef.current.getBoundingClientRect();
     const { x, y } = parentBounding;
@@ -26,7 +21,8 @@ function TxtShow({ text, toggleModal, workSpaceRef }) {
     setBoundingY(y + borderWidth);
   }, [workSpaceRef]);
   useEffect(() => {
-    if (text.fontSize) {
+    const deviceWidth = document.body.clientWidth;
+    if (deviceWidth < 992) {
       setFontSize(text.fontSize);
     } else {
       let updateFontSize;
