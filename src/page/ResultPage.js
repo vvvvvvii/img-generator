@@ -1,4 +1,5 @@
 import { useCallback, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toJpeg, toPng } from "html-to-image";
 import download from "downloadjs";
@@ -34,9 +35,10 @@ const ResultImgStyle = (theme) => ({
   },
 });
 
-function ResultPage({ imageResult }) {
+function ResultPage() {
   const downloadImgRef = useRef();
   const navigate = useNavigate();
+  const imageResult = useSelector((state) => state.imageResult);
 
   const downloadImg = useCallback((fileType) => {
     if (downloadImgRef.current === null) {

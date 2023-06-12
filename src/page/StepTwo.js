@@ -1,5 +1,7 @@
 import { toJpeg } from "html-to-image";
 import { useState, useRef, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { changeImageResult } from "../actions";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -14,11 +16,12 @@ import clickSound from "../assets/clickSound.mp3";
 
 const audio = new Audio(clickSound);
 
-function StepTwo({ setImageResult }) {
+function StepTwo() {
   const [texts, setTexts] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [modalTxt, setModalTxt] = useState({});
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const workSpaceRef = useRef();
@@ -65,13 +68,13 @@ function StepTwo({ setImageResult }) {
     toJpeg(workSpaceRef.current, { cacheBust: true })
       .then(async (dataUrl) => {
         const url = await dataUrl;
-        setImageResult(url);
+        dispatch(changeImageResult(url));
         navigate("/resultPage");
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [workSpaceRef, setImageResult, navigate]);
+  }, [workSpaceRef, dispatch, navigate]);
 
   return (
     <div>

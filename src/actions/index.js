@@ -4,3 +4,9 @@ export const changeSelectedImage = (url) => {
     payload: url,
   };
 };
+export const changeImageResult = (url) => {
+  return {
+    type: "CHANGE_IMAGE_RESULT",
+    payload: url,
+  };
+};

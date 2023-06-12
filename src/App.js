@@ -1,4 +1,3 @@
-import { useState } from "react";
 import HomePage from "./page/HomePage";
 import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
@@ -14,8 +13,6 @@ const wrapperStyle = {
 };
 
 function App() {
-  const [imageResult, setImageResult] = useState("");
-
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -23,19 +20,8 @@ function App() {
           <Routes>
             <Route element={<HomePage />} path={"/"}></Route>
             <Route element={<StepOne />} path={"/stepOne"}></Route>
-            <Route
-              element={
-                <StepTwo
-                  imageResult={imageResult}
-                  setImageResult={setImageResult}
-                />
-              }
-              path={"/stepTwo"}
-            ></Route>
-            <Route
-              element={<ResultPage imageResult={imageResult} />}
-              path={"/resultPage"}
-            ></Route>
+            <Route element={<StepTwo />} path={"/stepTwo"}></Route>
+            <Route element={<ResultPage />} path={"/resultPage"}></Route>
           </Routes>
         </div>
       </PersistGate>
