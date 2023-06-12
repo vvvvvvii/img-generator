@@ -3,13 +3,13 @@ import TxtCard from "./TxtCard";
 
 const TxtCardListStyle = (theme) => ({
   overflowY: "scroll",
-  height: "300px",
+  maxHeight: "300px",
   marginBottom: "1rem",
   [theme.breakpoints.up("md")]: {
-    height: "200px",
+    maxHeight: "200px",
   },
   [theme.breakpoints.up("lg")]: {
-    height: "450px",
+    maxHeight: "450px",
   },
 });
 function TxtCardList({ texts, toggleModal, onDelete }) {
