@@ -14,7 +14,7 @@ import clickSound from "../assets/clickSound.mp3";
 
 const audio = new Audio(clickSound);
 
-function StepTwo({ selectedImageUrl, setImageResult }) {
+function StepTwo({ setImageResult }) {
   const [texts, setTexts] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [modalTxt, setModalTxt] = useState({});
@@ -80,7 +80,6 @@ function StepTwo({ selectedImageUrl, setImageResult }) {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <WorkSpace
-              selectedImageUrl={selectedImageUrl}
               texts={texts}
               toggleModal={toggleModal}
               workSpaceRef={workSpaceRef}

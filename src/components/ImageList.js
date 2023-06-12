@@ -8,7 +8,7 @@ import "../css/swiper-customize.css";
 import { Grid, Navigation, Thumbs } from "swiper";
 import ImageShowBtn from "./ImageShowBtn";
 
-function ImageList({ images, onChangeBackgroundUrl, selectedImageUrl }) {
+function ImageList({ images }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
@@ -37,11 +37,7 @@ function ImageList({ images, onChangeBackgroundUrl, selectedImageUrl }) {
         {images &&
           images.map((image) => (
             <SwiperSlide key={image.id}>
-              <ImageShowBtn
-                image={image}
-                onChangeBackgroundUrl={onChangeBackgroundUrl}
-                selectedImageUrl={selectedImageUrl}
-              />
+              <ImageShowBtn image={image} />
             </SwiperSlide>
           ))}
       </Swiper>

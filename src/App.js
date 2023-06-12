@@ -4,6 +4,9 @@ import StepOne from "./page/StepOne";
 import StepTwo from "./page/StepTwo";
 import ResultPage from "./page/ResultPage";
 import { Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./store";
 
 const wrapperStyle = {
   background: "#000",
@@ -11,42 +14,32 @@ const wrapperStyle = {
 };
 
 function App() {
-  const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [imageResult, setImageResult] = useState("");
 
-  const onChangeBackgroundUrl = (url) => {
-    setSelectedImageUrl(url);
-  };
-
   return (
-    <div style={wrapperStyle}>
-      <Routes>
-        <Route element={<HomePage />} path={"/"}></Route>
-        <Route
-          element={
-            <StepOne
-              onChangeBackgroundUrl={onChangeBackgroundUrl}
-              selectedImageUrl={selectedImageUrl}
-            />
-          }
-          path={"/stepOne"}
-        ></Route>
-        <Route
-          element={
-            <StepTwo
-              selectedImageUrl={selectedImageUrl}
-              imageResult={imageResult}
-              setImageResult={setImageResult}
-            />
-          }
-          path={"/stepTwo"}
-        ></Route>
-        <Route
-          element={<ResultPage imageResult={imageResult} />}
-          path={"/resultPage"}
-        ></Route>
-      </Routes>
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <div style={wrapperStyle}>
+          <Routes>
+            <Route element={<HomePage />} path={"/"}></Route>
+            <Route element={<StepOne />} path={"/stepOne"}></Route>
+            <Route
+              element={
+                <StepTwo
+                  imageResult={imageResult}
+                  setImageResult={setImageResult}
+                />
+              }
+              path={"/stepTwo"}
+            ></Route>
+            <Route
+              element={<ResultPage imageResult={imageResult} />}
+              path={"/resultPage"}
+            ></Route>
+          </Routes>
+        </div>
+      </PersistGate>
+    </Provider>
   );
 }
 

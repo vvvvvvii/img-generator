@@ -1,5 +1,6 @@
 import { searchImages } from "../api";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Box from "@mui/material/Box";
 import InnerPageContainer from "../components/InnerPageContainer";
 import StageTitle from "../components/StageTitle";
@@ -8,9 +9,10 @@ import ErrorMsg from "../components/ErrorMsg";
 import ImageList from "../components/ImageList";
 import PageBtnList from "../components/PageBtnList";
 
-function StepOne({ onChangeBackgroundUrl, selectedImageUrl }) {
+function StepOne() {
   const [images, setImages] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const selectedImageUrl = useSelector((state) => state.selectedImage);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,15 +27,7 @@ function StepOne({ onChangeBackgroundUrl, selectedImageUrl }) {
       <StageTitle title={"第一步："} subtitle={"選擇圖片"} />
       <SearchBar setSearchTerm={setSearchTerm} />
       <Box mb={3}>
-        {images.length > 0 ? (
-          <ImageList
-            images={images}
-            onChangeBackgroundUrl={onChangeBackgroundUrl}
-            selectedImageUrl={selectedImageUrl}
-          />
-        ) : (
-          <ErrorMsg />
-        )}
+        {images.length > 0 ? <ImageList images={images} /> : <ErrorMsg />}
       </Box>
       <PageBtnList showNextBtn={selectedImageUrl} />
     </InnerPageContainer>

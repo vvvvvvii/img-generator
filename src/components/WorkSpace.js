@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import TxtShow from "../components/TxtShow";
 import Box from "@mui/material/Box";
 
@@ -28,7 +29,8 @@ const WorkSpaceStyle = (theme) => ({
   },
 });
 
-function WorkSpace({ selectedImageUrl, texts, toggleModal, workSpaceRef }) {
+function WorkSpace({ texts, toggleModal, workSpaceRef }) {
+  const selectedImageUrl = useSelector((state) => state.selectedImage);
   return (
     <Box
       style={{ backgroundImage: `url(${selectedImageUrl})` }}

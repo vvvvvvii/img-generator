@@ -1,3 +1,5 @@
+import { useSelector, useDispatch } from "react-redux";
+import { changeSelectedImage } from "../actions";
 import Radium from "radium";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -29,16 +31,21 @@ const SelectedImgStyle = {
   border: "5px solid #fa8080",
 };
 
-function ImageShowBtn({ image, onChangeBackgroundUrl, selectedImageUrl }) {
+function ImageShowBtn({ image }) {
   const theme = useTheme();
   const md = useMediaQuery(theme.breakpoints.up("md"));
+  const selectedImageUrl = useSelector((state) => state.selectedImage);
+  const dispatch = useDispatch();
 
-  const handleClick = (url) => {
-    onChangeBackgroundUrl(url);
+  const onChangeSelectedImageUrl = (url) => {
+    dispatch(changeSelectedImage(url));
   };
 
   return (
-    <Box mb={md ? 6 : 2} onClick={() => handleClick(image.urls.full)}>
+    <Box
+      mb={md ? 6 : 2}
+      onClick={() => onChangeSelectedImageUrl(image.urls.full)}
+    >
       <img
         alt={image.alt_description}
         src={image.urls.small}
