@@ -274,6 +274,7 @@ function EditModal({ modalTxt, toggleModal, onSubmit }) {
               value={content}
               sx={InputStyle}
               onChange={handleTxtChange}
+              inputRef={(input) => input && input.focus()}
             />
             <Box sx={FontSizeStyle}>
               <TextField

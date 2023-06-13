@@ -98,21 +98,24 @@ function StepTwo() {
               justifyContent: "space-between",
             }}
           >
-            <BrickBtn
-              type="button"
-              variant="contained"
-              color="default"
-              size="large"
-              onClick={() => toggleModal(true)}
-              sx={{ marginBottom: "1rem" }}
-            >
-              新增
-            </BrickBtn>
-            <TxtCardList
-              texts={texts}
-              toggleModal={toggleModal}
-              onDelete={onDelete}
-            />
+            <div>
+              <BrickBtn
+                type="button"
+                variant="contained"
+                color="default"
+                size="large"
+                fullWidth
+                onClick={() => toggleModal(true)}
+                sx={{ marginBottom: "1rem" }}
+              >
+                新增
+              </BrickBtn>
+              <TxtCardList
+                texts={texts}
+                toggleModal={toggleModal}
+                onDelete={onDelete}
+              />
+            </div>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <PageBtnList showNextBtn={false} />
               <BrickBtn

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/system";
 import Draggable from "react-draggable";
 import Typography from "@mui/material/Typography";
@@ -44,6 +44,11 @@ function DraggableText({
   toggleModal,
 }) {
   const [isDoubleTap, setIsDoubleTap] = useState(false);
+
+  setTimeout(() => {
+    setIsDoubleTap(false);
+  }, [1000]);
+
   const onStop = (target) => {
     let { x, y } = target.getBoundingClientRect();
     onStopDrag(x, y);

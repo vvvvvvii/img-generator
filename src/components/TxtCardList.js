@@ -3,10 +3,10 @@ import TxtCard from "./TxtCard";
 
 const TxtCardListStyle = (theme) => ({
   overflowY: "scroll",
-  maxHeight: "300px",
+  maxHeight: "200px",
   marginBottom: "1rem",
   [theme.breakpoints.up("md")]: {
-    maxHeight: "200px",
+    maxHeight: "300px",
   },
   [theme.breakpoints.up("lg")]: {
     maxHeight: "450px",
