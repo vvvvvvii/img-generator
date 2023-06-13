@@ -19,17 +19,19 @@
 #### 第二步
 
 - 可新增或刪除文字
-- 可開關編輯文字的 Modal
+- 可開關編輯文字的 Modal ，且自動 focus 在文字輸入的欄位
 - 文字可加上顏色與特定樣式
 - 文字方塊可被拖拉
 - 文字方塊放大縮小時，文字跟著變大縮小
 - 文字方塊雙點擊時，可開啟編輯文字 Modal
 - 在平板或手機裝置時，可直接在 Modal 調整字體大小
+- 重整時已選擇的圖片也不會消失
 
 #### 結果頁
 
 - 完成的圖片可用 JPEG 或 PNG 格式下載
 - 可回到首頁再次生成新圖片
+- 重整時生成的圖片也不會消失
 
 ## 技術：
 
@@ -37,6 +39,10 @@
 
 - [Unsplash](https://unsplash.com/developers)：搜尋圖片功能
 - [MyMemory](https://mymemory.translated.net/)：搜尋文字中翻英，加強 Unsplash 的準確度
+
+#### Redux
+
+- 以 Redux 管理選擇的圖片與生成的圖片
 
 #### hooks
 
@@ -59,7 +65,10 @@
 - [Material Icons](https://mui.com/material-ui/material-icons/)：Icons
 - [Radium](https://www.npmjs.com/package/radium)：在 inline-style 撰寫 hover / media queries
 - [React-Draggable](https://www.npmjs.com/package/react-draggable)：拖曳方塊
+- [React-Redux](https://react-redux.js.org/)：管理共用資料，減少層層傳遞 props
 - [React-Router-DOM](https://www.npmjs.com/package/react-router-dom)：路由設定
+- [Redux](https://redux.js.org/)：管理共用資料，減少層層傳遞 props
+- [Redux-Persist](https://www.npmjs.com/package/redux-persist)：重整頁面時 Redux 資料不因此消失
 - [Swiper](https://swiperjs.com/react)：圖片輪播效果
 
 ## 音效版權標示：
