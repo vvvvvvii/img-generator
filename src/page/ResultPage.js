@@ -9,29 +9,14 @@ import BrickBtn from "../components/BrickBtn";
 import FullContainer from "../components/FullContainer";
 import StageTitle from "../components/StageTitle";
 
-const ResultImgStyle = (theme) => ({
-  width: "300px",
-  height: "300px",
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  backgroundRepeat: "no-repeat",
-  overflow: "hidden",
-  [theme.breakpoints.up("sm")]: {
-    width: "400px",
-    height: "350px",
-    margin: "0 auto",
-  },
+const ImageResultContainerStyle = (theme) => ({
+  width: "50%",
+  height: "50%",
+  display: "flex",
+  justifyContent: "center",
   [theme.breakpoints.up("md")]: {
-    width: "300px",
-    height: "450px",
-  },
-  [theme.breakpoints.up("lg")]: {
-    width: "400px",
-    height: "600px",
-  },
-  [theme.breakpoints.up("xl")]: {
-    width: "500px",
-    height: "600px",
+    width: "70%",
+    height: "70%",
   },
 });
 
@@ -70,11 +55,14 @@ function ResultPage() {
     <FullContainer>
       <StageTitle title={"完成！"} mb={5}></StageTitle>
       {imageResult && (
-        <Box
-          style={{ backgroundImage: `url(${imageResult})` }}
-          sx={ResultImgStyle}
-          ref={downloadImgRef}
-        />
+        <Box mb={5} sx={ImageResultContainerStyle}>
+          <img
+            ref={downloadImgRef}
+            src={imageResult}
+            alt="成品"
+            style={{ objectFit: "contain" }}
+          ></img>
+        </Box>
       )}
       <div className="d-flex">
         <BrickBtn
